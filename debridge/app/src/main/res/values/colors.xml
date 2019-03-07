@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF212121</color>
+    <color name="colorPrimaryDark">#FF212121</color>
+    <color name="colorAccent">#FF212121</color>
+    <color name="statusBarColor">#FF212121</color>
+
+    <!--自定义的半透明背景-->
+    <color name="trans_white">#d2ffffff</color>
+    <color name="trans_gray">#cbaaaaaa</color>
+
+    <!--自定义颜色-->
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#efefef</color>
+    <color name="gray_light">#f5f5f5</color>
+    <color name="gray_dark">#FF888888</color>
+    <color name="red_dark">#cc0000</color>
+    <color name="red_light">#ff4444</color>
+    <color name="trans_red">#90ff4444</color>
+    <color name="blue_light">#ff33b5e5</color>
+    <color name="blue_dark">#ff0099cc</color>
+    <color name="green_light">#ff99cc00</color>
+    <color name="green_dark">#ff669900</color>
+    <color name="orange_light">@android:color/holo_orange_light</color>
+    <color name="orange_dark">@android:color/holo_orange_dark</color>
+    <color name="transparent">#00ffffff</color>
+
+    <!--不知道的颜色-->
+    <color name="floating_action_button_color">#FF4081</color>
+    <color name="floating_action_button_ripple">#ff6c9d</color>
+</resources>

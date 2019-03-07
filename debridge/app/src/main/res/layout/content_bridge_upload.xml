@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="net.jsrbc.activity.bridge.BridgeUploadActivity"
+    tools:showIn="@layout/activity_bridge_upload">
+    <!--无待上传桥梁-->
+    <TextView
+        android:id="@+id/tv_empty"
+        style="@style/EmptyViewStyle"
+        android:text="无待上传桥梁"
+        tools:ignore="HardcodedText" />
+
+    <!--任务单列表-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_bridge_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

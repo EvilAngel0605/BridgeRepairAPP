@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<net.jsrbc.view.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_menu"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_tiny"
+    app:menu_count="2">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll_wrapper"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_white"
+            android:clickable="true"
+            android:focusable="true">
+
+            <!--桥梁照片-->
+            <ImageView
+                android:id="@+id/iv_disease_photo"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription" />
+
+            <!--桥梁照片-->
+            <TextView
+                android:id="@+id/tv_no_photo"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray_light"
+                android:textStyle="bold|italic"
+                android:textSize="@dimen/text_md"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="@string/tip_no_photo"/>
+
+            <RelativeLayout
+                android:padding="@dimen/padding_sm"
+                android:layout_weight="4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_sm">
+                <LinearLayout
+                    android:id="@+id/ll_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_member_desc"
+                        android:layout_weight="5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/text_md"
+                        android:maxLines="1"/>
+                    <TextView
+                        android:id="@+id/tv_record_date"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="top|end"
+                        android:textSize="@dimen/text_sm"
+                        android:maxLines="1"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_disease_desc"
+                    android:layout_below="@id/ll_title"
+                    android:layout_marginTop="@dimen/margin_sm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/text_sm"
+                    android:maxLines="1"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!--复制按钮-->
+        <TextView
+            android:id="@+id/tv_copy_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_orange"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@color/white"
+            android:text="复制"
+            tools:ignore="HardcodedText" />
+
+        <!--删除按钮-->
+        <TextView
+            android:id="@+id/tv_delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_red"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@color/white"
+            android:text="删除"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+</net.jsrbc.view.SlidingMenu>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addOrReplaceDisease">
+        INSERT OR REPLACE INTO TBL_BRIDGE_DISEASE
+            (ID, TASK_ID, BRIDGE_ID, SIDE_TYPE_ID, SITE_NO, PARTS_TYPE_ID, MEMBER_TYPE_ID,
+            MEMBER_HORIZONTAL_NO, MEMBER_VERTICAL_NO, MEMBER_STAKE_SIDE,
+            MEMBER_SPECIAL_SECTION, MATERIAL_TYPE_ID, DISEASE_TYPE_ID,
+            H_POSITION_START, H_POSITION_END, L_POSITION_START, L_POSITION_END,
+            V_POSITION_START, V_POSITION_END, POSITION, COUNT, ANGLE, MIN_LENGTH,
+            MAX_LENGTH, MIN_WIDTH, MAX_WIDTH, MIN_DEPTH, MAX_DEPTH, PERCENT_DEGREE,
+            DESC_DEGREE, BEHAVIOR_DESC, IS_SIGNIFICANT, TREND, DEDUCTION_SCALE,
+            DEDUCTION_POINT, DISEASE_DESC_ID, PARENT_ID, NOTES, TREATMENT_ID, RECORD_USER, RECORD_USER_NAME, RECORD_DATE, UPLOAD)
+        VALUES
+            (#{id}, #{taskId}, #{bridgeId}, #{sideTypeId}, #{siteNo}, #{partsTypeId}, #{memberTypeId},
+            #{memberHorizontalNo}, #{memberVerticalNo}, #{memberStakeSide},
+            #{memberSpecialSection},#{materialTypeId}, #{diseaseTypeId},
+            #{hPositionStart}, #{hPositionEnd}, #{lPositionStart}, #{lPositionEnd},
+            #{vPositionStart}, #{vPositionEnd}, #{position}, #{count}, #{angle}, #{minLength},
+            #{maxLength}, #{minWidth}, #{maxWidth}, #{minDepth}, #{maxDepth}, #{percentDegree},
+            #{descDegree}, #{behaviorDesc}, #{isSignificant}, #{trend},#{deductionScale},
+            #{deductionPoint}, #{diseaseDescId}, #{parentId}, #{notes}, #{treatmentId}, #{recordUser}, #{recordUserName}, #{recordDate}, #{upload})
+    </string>
+
+    <string name="deleteDisease">
+        DELETE FROM TBL_BRIDGE_DISEASE WHERE ID=#{id}
+    </string>
+
+    <string name="getOverallSituationList">
+        SELECT * FROM TBL_BRIDGE_DISEASE WHERE TASK_ID=#{taskId} AND BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId} AND SITE_NO = 0 ORDER BY ROWID DESC
+    </string>
+
+    <string name="getDiseaseList">
+        SELECT BD.*,
+            (SELECT MAX(SITE_NO) FROM TBL_BRIDGE_SITE WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}) AS MAX_SITE_NO,
+            BS.JOINT_NO,
+            PT.POSITION_TYPE_ID,
+            POS.NAME AS POSITION_TYPE_NAME,
+            BP.ID AS BRIDGE_PARTS_ID,
+            PT.NAME AS PARTS_TYPE_NAME,
+            BM.ID AS BRIDGE_MEMBER_ID,
+            MT.NAME AS MEMBER_TYPE_NAME,
+            MD.MEMBER_DESC,
+            DT.NAME AS DISEASE_TYPE_NAME,
+            DD.DISEASE_DESC,
+            BP.HORIZONTAL_COUNT AS MEMBER_HORIZONTAL_COUNT,
+            BP.VERTICAL_COUNT AS MEMBER_VERTICAL_COUNT
+        FROM TBL_BRIDGE_DISEASE BD
+            INNER JOIN TBL_BRIDGE_SITE BS ON BS.BRIDGE_ID=BD.BRIDGE_ID AND BS.SIDE_TYPE_ID=BD.SIDE_TYPE_ID AND BS.SITE_NO=BD.SITE_NO
+            LEFT JOIN TBL_PARAM_MEMBER_TYPE MT ON MT.ID=BD.MEMBER_TYPE_ID
+            LEFT JOIN TBL_PARAM_MEMBER_DESC MD ON MD.ID=MT.MEMBER_DESC_ID
+            LEFT JOIN TBL_PARAM_PARTS_TYPE PT ON PT.ID=BD.PARTS_TYPE_ID
+            LEFT JOIN TBL_PARAM_POSITION_TYPE POS ON POS.ID=PT.POSITION_TYPE_ID
+            LEFT JOIN TBL_BRIDGE_PARTS BP ON BP.BRIDGE_ID=BD.BRIDGE_ID AND BP.SIDE_TYPE_ID=BD.SIDE_TYPE_ID AND BP.SITE_NO=BD.SITE_NO AND BP.PARTS_TYPE_ID=BD.PARTS_TYPE_ID AND BP.MEMBER_TYPE_ID=BD.MEMBER_TYPE_ID
+            LEFT JOIN TBL_PARAM_DISEASE_TYPE DT ON DT.ID=BD.DISEASE_TYPE_ID
+            LEFT JOIN TBL_PARAM_DISEASE_DESC DD ON DD.ID=BD.DISEASE_DESC_ID
+            LEFT JOIN TBL_BRIDGE_MEMBER BM ON BM.BRIDGE_ID=BD.BRIDGE_ID AND BM.SIDE_TYPE_ID=BD.SIDE_TYPE_ID AND BM.SITE_NO=BD.SITE_NO AND BM.MEMBER_TYPE_ID=BD.MEMBER_TYPE_ID AND BM.STAKE_SIDE=BD.MEMBER_STAKE_SIDE AND BM.SPECIAL_SECTION=BD.MEMBER_SPECIAL_SECTION AND BM.HORIZONTAL_NO=BD.MEMBER_HORIZONTAL_NO AND BM.VERTICAL_NO=BD.MEMBER_VERTICAL_NO
+        WHERE BD.TASK_ID=#{taskId} AND BD.BRIDGE_ID=#{bridgeId} AND BD.SIDE_TYPE_ID=#{sideTypeId} AND BD.SITE_NO > 0
+        ORDER BY RECORD_DATE DESC
+    </string>
+
+    <string name="getDiseaseListForUpload">
+        SELECT * FROM TBL_BRIDGE_DISEASE WHERE TASK_ID=#{taskId} AND BRIDGE_ID=#{bridgeId} AND UPLOAD=1
+    </string>
+
+    <string name="getDiseaseTypeListByMemberType">
+        SELECT DT.*,
+        MD.MEMBER_TYPE_ID,
+        MD.DISEASE_DESC_TYPE_ID,
+        EI.NAME AS EVALUATION_INDEX_NAME,
+        EI.MAX_SCALE
+        FROM TBL_PARAM_DISEASE_TYPE DT
+        INNER JOIN TBL_R_MEMBER_DISEASE MD ON MD.DISEASE_TYPE_ID=DT.ID
+        LEFT JOIN TBL_PARAM_EVALUATION_INDEX EI ON EI.ID=DT.EVALUATION_INDEX_ID
+        WHERE MD.MEMBER_TYPE_ID=#{memberTypeId} AND MD.MATERIAL_TYPE_ID=#{materialTypeId}
+        ORDER BY MD.SORT_NO DESC
+    </string>
+
+    <string name="getDiseaseDescListByDiseaseDescType">
+        SELECT * FROM TBL_PARAM_DISEASE_DESC WHERE DISEASE_DESC_TYPE_ID=#{diseaseDescTypeId} ORDER BY SORT_NO ASC
+    </string>
+
+    <string name="getEvaluationIndex">
+        SELECT * FROM TBL_PARAM_EVALUATION_INDEX WHERE ID=#{evaluationIndexId}
+    </string>
+
+    <string name="checkDiseaseDuplication">
+        SELECT COUNT(*) FROM TBL_BRIDGE_DISEASE
+        WHERE TASK_ID=#{taskId} AND BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId} AND SITE_NO=#{siteNo}
+        AND MEMBER_TYPE_ID=#{memberTypeId} AND MEMBER_HORIZONTAL_NO=#{memberHorizontalNo} AND MEMBER_VERTICAL_NO=#{memberVerticalNo}
+        AND MEMBER_STAKE_SIDE=#{memberStakeSide} AND MEMBER_SPECIAL_SECTION=#{memberSpecialSection} AND DISEASE_TYPE_ID=#{diseaseTypeId}
+        AND H_POSITION_START=#{hPositionStart} AND H_POSITION_END=#{hPositionEnd} AND L_POSITION_START=#{lPositionStart} AND L_POSITION_END=#{lPositionEnd}
+        AND V_POSITION_START=#{vPositionStart} AND V_POSITION_END=#{vPositionEnd} AND POSITION=#{position} AND COUNT=#{count} AND ANGLE=#{angle}
+        AND MIN_LENGTH=#{minLength} AND MAX_LENGTH=#{maxLength} AND MIN_WIDTH=#{minWidth} AND MAX_WIDTH=#{maxWidth} AND MIN_DEPTH=#{minDepth} AND MAX_DEPTH=#{maxDepth}
+        AND PERCENT_DEGREE=#{percentDegree} AND DESC_DEGREE=#{descDegree} AND BEHAVIOR_DESC=#{behaviorDesc} AND NOTES=#{notes} AND IS_SIGNIFICANT=#{isSignificant}
+        AND DEDUCTION_SCALE=#{deductionScale}
+    </string>
+
+    <string name="increaseDiseaseTypeFrequency">
+        UPDATE TBL_R_MEMBER_DISEASE SET SORT_NO=SORT_NO+1
+        WHERE MATERIAL_TYPE_ID=#{materialTypeId} AND MEMBER_TYPE_ID=#{memberTypeId} AND DISEASE_TYPE_ID=#{diseaseTypeId}
+    </string>
+</resources>

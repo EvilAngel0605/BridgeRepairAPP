@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--数据库路径、数据库名称及版本号配置-->
+    <string name="databaseName">BRIDGE_DATA.db</string>
+    <integer name="databaseVersion">1</integer>
+
+    <!--注册Sqlite表格-->
+    <string-array name="sqliteTables">
+        <!--桥梁相关实体-->
+        <item>net.jsrbc.entity.TblParamDiseaseDesc</item>
+        <item>net.jsrbc.entity.TblTask</item>
+        <item>net.jsrbc.entity.TblBridge</item>
+        <item>net.jsrbc.entity.TblBridgeSide</item>
+        <item>net.jsrbc.entity.TblBridgeSite</item>
+        <item>net.jsrbc.entity.TblBridgeParts</item>
+        <item>net.jsrbc.entity.TblBridgeMember</item>
+        <item>net.jsrbc.entity.TblBridgeDisease</item>
+        <item>net.jsrbc.entity.TblBridgeDiseasePhoto</item>
+
+        <!--基础数据相关-->
+        <item>net.jsrbc.entity.TblParamGroup</item>
+        <item>net.jsrbc.entity.TblParamType</item>
+        <item>net.jsrbc.entity.TblParamStructureGroup</item>
+        <item>net.jsrbc.entity.TblParamStructureType</item>
+        <item>net.jsrbc.entity.TblParamMemberDesc</item>
+        <item>net.jsrbc.entity.TblParamMemberType</item>
+        <item>net.jsrbc.entity.TblParamPartsType</item>
+        <item>net.jsrbc.entity.TblParamPositionType</item>
+        <item>net.jsrbc.entity.TblRAbutmentMember</item>
+        <item>net.jsrbc.entity.TblRBridgeParts</item>
+        <item>net.jsrbc.entity.TblRSuperstructureMember</item>
+        <item>net.jsrbc.entity.TblParamDiseaseType</item>
+        <item>net.jsrbc.entity.TblParamEvaluationIndex</item>
+        <item>net.jsrbc.entity.TblRMemberDisease</item>
+    </string-array>
+</resources>

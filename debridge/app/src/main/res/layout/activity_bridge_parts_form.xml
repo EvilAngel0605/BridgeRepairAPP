@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.jsrbc.activity.member.BridgePartsFormActivity">
+
+    <include layout="@layout/common_toolbar"/>
+
+    <include layout="@layout/content_bridge_parts_form" />
+
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableTop="@drawable/ic_hint_empty_bridge"
+        android:drawablePadding="@dimen/padding_sm"
+        android:textSize="@dimen/text_md"
+        android:textColor="@color/gray_dark"
+        android:text="无可编辑项"
+        android:visibility="gone"
+        tools:ignore="HardcodedText" />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,149 @@
+<resources>
+    <string name="app_name">中设桥梁</string>
+
+    <!--各Activity标题-->
+    <string name="title_activity_my_task">我的任务</string>
+    <string name="title_activity_task_download">下载任务单</string>
+    <string name="title_activity_bridge_list">桥梁列表</string>
+    <string name="title_activity_bridge">桥梁信息</string>
+    <string name="title_activity_bridge_side">桥梁分幅</string>
+    <string name="title_activity_bridge_side_form">桥梁分幅表单</string>
+    <string name="title_activity_bridge_site">桥梁孔跨管理表单</string>
+    <string name="title_activity_span_combination_form">跨径组合填写</string>
+    <string name="title_activity_superstructure_form">批量添加上部结构</string>
+    <string name="title_activity_super_member_form">上部结构构件数量</string>
+    <string name="title_activity_pier_form">批量添加桥墩</string>
+    <string name="title_activity_pier_member_form">桥墩构件数量</string>
+    <string name="title_activity_abutment_form">批量添加桥台</string>
+    <string name="title_activity_abutment_member_form">桥台构件数量</string>
+    <string name="title_activity_deck_form">普良添加桥面系</string>
+    <string name="title_activity_expansion_joint_form">批量添加伸缩缝</string>
+    <string name="title_activity_bridge_parts">桥梁部件列表</string>
+    <string name="title_activity_bridge_parts_form">桥梁部件编辑表单</string>
+    <string name="title_activity_camera">拍照</string>
+    <string name="title_activity_bridge_preview">照片预览</string>
+    <string name="title_activity_overall_situation">整体情况列表</string>
+    <string name="title_activity_overall_situation_form">整体情况描述</string>
+    <string name="title_activity_disease_preview">预览</string>
+    <string name="title_activity_disease_photo_wall">照片列表</string>
+    <string name="title_activity_bridge_disease">桥梁病害列表</string>
+    <string name="title_activity_bridge_disease_form">桥梁病害表单</string>
+    <string name="title_activity_site_range_form">选择孔跨范围</string>
+    <string name="title_activity_bridge_upload">同步管理</string>
+    <string name="title_activity_bridge_map">桥梁定位</string>
+    <string name="title_activity_setting">系统设置</string>
+
+    <!--主界面标题-->
+    <string name="main_activity_title">桥梁养护数据中心</string>
+    <!--主界面侧滑菜单栏条目-->
+    <string name="drawer_item_task_title">我的任务</string>
+    <string name="drawer_item_sync_title">同步管理</string>
+    <string name="drawer_item_settings_title">设置</string>
+    <string name="drawer_item_help_title">帮助</string>
+    <string name="drawer_item_suggest_title">意见反馈</string>
+    <string name="drawer_item_question_title">问题反馈</string>
+    <string name="drawer_item_update_title">更新日志</string>
+    <!--主界面TAB标题-->
+    <string name="main_tab_item_frequency_title">经常检查</string>
+    <string name="main_tab_item_regular_title">定期检查</string>
+    <string name="main_tab_item_special_title">特殊检查</string>
+    <!--主界面相关标题-->
+    <string name="navigation_drawer_open">打开侧滑菜单</string>
+    <string name="navigation_drawer_close">关闭侧滑菜单</string>
+    <string name="action_search">搜索</string>
+    <string name="action_inspection">开始检测</string>
+    <string name="action_scan_inspection">扫码检测</string>
+    <string name="title_activity_login">登录</string>
+    <string name="title_bridge_category">桥梁分类</string>
+    <string name="title_bridge_build_date">建成时间</string>
+    <string name="title_bridge_evaluation_level">上次评定等级</string>
+
+    <!-- 登录界面 -->
+    <string name="prompt_account">账号</string>
+    <string name="prompt_password">密码</string>
+    <string name="action_sign_in">登录</string>
+
+    <!--任务单下载页面-->
+    <string name="tip_no_task">无任务单</string>
+    <string name="checkbox_select_all_text">全选</string>
+    <string name="btn_download_text">下载</string>
+    <integer name="taskMaxProgress">4</integer>
+
+    <!--桥梁信息界面-->
+    <string name="action_navigation">导航</string>
+    <string name="bridge_title_bridge_photo">桥梁照片</string>
+    <string name="bridge_title_bridge_side">分幅管理</string>
+    <string name="bridge_title_deck_divide">分离形式</string>
+    <string name="bridge_title_road_no">路线编号</string>
+    <string name="bridge_title_road_name">路线名称</string>
+    <string name="bridge_title_road_level">路线等级</string>
+    <string name="bridge_title_address">所在地市</string>
+    <string name="bridge_title_units_name">管养单位</string>
+    <string name="bridge_title_bridge_category">桥梁分类</string>
+    <string name="bridge_title_build_date">建成年限</string>
+    <string name="bridge_title_bridge_evaluation">上次评定等级</string>
+    <string name="bridge_title_inspection_date">上次检查时间</string>
+
+    <!--桥梁分幅界面-->
+    <string name="bridge_side_action_member_manage">部构件管理</string>
+    <string name="bridge_side_action_structure_manage">结构信息管理</string>
+
+    <!--桥梁分幅添加界面-->
+    <string name="bridge_side_form_side_type">*分幅类型</string>
+    <string name="bridge_side_form_stake_no">*桥位桩号</string>
+    <string name="bridge_side_form_bridge_length">桥梁全长</string>
+    <string name="bridge_side_form_bridge_span_combination">跨径组合</string>
+    <string name="bridge_side_form_deck_total_width">桥面总宽</string>
+    <string name="bridge_side_form_lane_width">车行道宽</string>
+    <string name="bridge_side_form_deck_evaluation">桥面标高</string>
+    <string name="bridge_side_form_sub_clear_height">桥下净高</string>
+    <string name="bridge_side_form_super_clear_height">桥上净高</string>
+    <string name="bridge_side_form_access_total_width">引道总宽</string>
+    <string name="bridge_side_form_access_road_width">引道路面宽</string>
+    <string name="bridge_side_form_access_linear">引道线形</string>
+    <string name="bridge_side_form_bridge_length_hint">桥梁全长，单位：m</string>
+    <string name="bridge_side_form_bridge_span_combination_hint">跨径组合，单位：m</string>
+    <string name="bridge_side_form_deck_total_width_hint">桥面总宽，单位：m</string>
+    <string name="bridge_side_form_lane_width_hint">车行道宽，单位：m</string>
+    <string name="bridge_side_form_deck_evaluation_hint">桥面标高，单位：m</string>
+    <string name="bridge_side_form_sub_clear_height_hint">桥下净高，单位：m</string>
+    <string name="bridge_side_form_super_clear_height_hint">桥上净高，单位：m</string>
+    <string name="bridge_side_form_access_total_width_hint">引道总宽，单位：m</string>
+    <string name="bridge_side_form_access_road_width_hint">引道路面宽，单位：m</string>
+    <string name="bridge_side_form_access_linear_hint">引道线形，单位：m</string>
+
+    <!--桥梁孔跨管理界面-->
+    <string name="bridge_site_span_combination_menu">跨径组合管理</string>
+    <string name="bridge_site_superstructure_menu">批量添加上部结构</string>
+    <string name="bridge_site_pier_menu">批量添加桥墩</string>
+    <string name="bridge_site_abutment_menu">批量添加桥台</string>
+    <string name="bridge_site_riverbed_menu">批量添加河床</string>
+    <string name="bridge_site_regulating_menu">批量添加调治构造物</string>
+    <string name="bridge_site_deck_menu">批量添加桥面系</string>
+    <string name="bridge_site_expansion_joint_menu">批量添加伸缩缝</string>
+    <string name="bridge_site_hint_span_combination">输入跨径组合，分联格式：(孔数*跨径)+(孔数*跨径)…；不分联格式：孔数*跨径+孔数*跨径…</string>
+
+    <!--同步管理界面-->
+    <integer name="upload_max_progress">8</integer>
+
+    <!--通用-->
+    <string name="dialog_message_login">正在登录…</string>
+    <string name="dialog_message_progress">正在进行中…</string>
+    <string name="action_save">保存</string>
+    <string name="item_delete_text">删除</string>
+    <string name="tip_no_photo">暂无照片</string>
+    <string name="tip_no_front_photo">无正面照</string>
+    <string name="tip_no_side_photo">无侧面照</string>
+    <string name="tip_no_upward_photo">无仰视照</string>
+    <string name="tip_bottom">已经见底了～</string>
+    <string name="btn_save">保存</string>
+    <string name="btn_cancel">取消</string>
+    <string name="tip_no_side">暂无桥梁分幅</string>
+    <string name="tip_no_site">暂无孔跨</string>
+    <string name="tip_no_parts">暂无部构件类型</string>
+    <string name="label_start_no">*起始孔号</string>
+    <string name="label_end_no">*结束孔号</string>
+    <string name="hint_start_no">输入起始孔号</string>
+    <string name="hint_end_no">输入结束孔号</string>
+    <string name="label_structure_type">*结构类型</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addOrReplaceDiseasePhoto">
+        INSERT OR REPLACE INTO TBL_BRIDGE_DISEASE_PHOTO (ID, DISEASE_ID, PATH, UPLOAD)
+        VALUES (#{id}, #{diseaseId}, #{path}, #{upload})
+    </string>
+
+    <string name="deleteDiseasePhoto">
+        DELETE FROM TBL_BRIDGE_DISEASE_PHOTO WHERE ID=#{id}
+    </string>
+
+    <string name="getDiseasePhotoList">
+        SELECT * FROM TBL_BRIDGE_DISEASE_PHOTO WHERE DISEASE_ID=#{diseaseId} ORDER BY ROWID DESC
+    </string>
+
+    <string name="getLatestPhoto">
+        SELECT * FROM TBL_BRIDGE_DISEASE_PHOTO WHERE DISEASE_ID=#{diseaseId} ORDER BY ROWID DESC LIMIT 1
+    </string>
+    
+    <string name="getDiseasePhotoListForUpload">
+        SELECT DP.*
+        FROM TBL_BRIDGE_DISEASE_PHOTO DP
+        INNER JOIN TBL_BRIDGE_DISEASE BD ON BD.ID=DP.DISEASE_ID
+        WHERE BD.BRIDGE_ID=#{bridgeId}
+        AND DP.UPLOAD=1
+    </string>
+
+    <string name="setDiseasePhotoUploadSuccess">
+        UPDATE TBL_BRIDGE_DISEASE_PHOTO SET UPLOAD=0 WHERE ID=#{id}
+    </string>
+</resources>

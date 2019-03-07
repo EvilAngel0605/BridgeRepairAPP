@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addOrReplaceBridgeSide">
+        INSERT OR REPLACE INTO TBL_BRIDGE_SIDE
+        (ID, BRIDGE_ID, BRIDGE_NAME, SIDE_TYPE_ID, SIDE_TYPE_NAME, SIDE_TYPE_SORT_NO, STAKE_NO, BRIDGE_LENGTH, BRIDGE_SPAN_COMBINATION, DECK_TOTAL_WIDTH, LANE_WIDTH,
+        DECK_EVALUATION, SUB_CLEAR_HEIGHT, SUPER_CLEAR_HEIGHT, ACCESS_TOTAL_WIDTH, ACCESS_ROAD_WIDTH, ACCESS_LINEAR_ID, ACCESS_LINEAR_NAME, TASK_ID, UPLOAD)
+        VALUES
+        (#{id}, #{bridgeId}, #{bridgeName}, #{sideTypeId}, #{sideTypeName}, #{sideTypeSortNo}, #{stakeNo}, #{bridgeLength}, #{bridgeSpanCombination}, #{deckTotalWidth}, #{laneWidth},
+        #{deckEvaluation}, #{subClearHeight}, #{superClearHeight}, #{accessTotalWidth}, #{accessRoadWidth}, #{accessLinearId}, #{accessLinearName}, #{taskId}, #{upload})
+    </string>
+
+    <string name="addOrReplaceBridgeSideList">
+        INSERT OR REPLACE INTO TBL_BRIDGE_SIDE
+        (ID, BRIDGE_ID, BRIDGE_NAME, SIDE_TYPE_ID, SIDE_TYPE_NAME, SIDE_TYPE_SORT_NO, STAKE_NO, BRIDGE_LENGTH, BRIDGE_SPAN_COMBINATION, DECK_TOTAL_WIDTH, LANE_WIDTH,
+        DECK_EVALUATION, SUB_CLEAR_HEIGHT, SUPER_CLEAR_HEIGHT, ACCESS_TOTAL_WIDTH, ACCESS_ROAD_WIDTH, ACCESS_LINEAR_ID, ACCESS_LINEAR_NAME, TASK_ID, UPLOAD)
+        VALUES
+        (#{id}, #{bridgeId}, #{bridgeName}, #{sideTypeId}, #{sideTypeName}, #{sideTypeSortNo}, #{stakeNo}, #{bridgeLength}, #{bridgeSpanCombination}, #{deckTotalWidth}, #{laneWidth},
+        #{deckEvaluation}, #{subClearHeight}, #{superClearHeight}, #{accessTotalWidth}, #{accessRoadWidth}, #{accessLinearId}, #{accessLinearName}, #{taskId}, #{upload})
+    </string>
+
+    <string name="getBridgeSideListByBridgeId">
+        SELECT * FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=#{bridgeId} ORDER BY SIDE_TYPE_SORT_NO ASC
+    </string>
+
+    <string name="getBridgeSideBySideType">
+        SELECT * FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+    </string>
+
+    <string name="getBridgeSideById">
+        SELECT * FROM TBL_BRIDGE_SIDE WHERE ID=#{id}
+    </string>
+
+    <string name="updateBridgeSpanCombination">
+        UPDATE TBL_BRIDGE_SIDE SET BRIDGE_SPAN_COMBINATION=#{bridgeSpanCombination} WHERE ID=#{id}
+    </string>
+
+    <string name="getBridgeSideListForUpload">
+        SELECT * FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=#{bridgeId} AND UPLOAD=1
+    </string>
+
+    <string name="getBridgeSideListForUploadSite">
+        SELECT BS.*
+        FROM TBL_BRIDGE_SIDE BS
+        WHERE BS.BRIDGE_ID=#{bridgeId}
+        AND EXISTS (SELECT 1 FROM TBL_BRIDGE_SITE WHERE BRIDGE_ID=BS.BRIDGE_ID AND SIDE_TYPE_ID=BS.SIDE_TYPE_ID AND UPLOAD=1)
+    </string>
+</resources>

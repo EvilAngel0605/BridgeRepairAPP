@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="@dimen/margin_xl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="net.jsrbc.activity.disease.OverallSituationFormActivity"
+    tools:showIn="@layout/activity_overall_situation_form">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--桥梁分幅-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_md"
+            android:layout_marginBottom="@dimen/margin_md"
+            android:paddingStart="@dimen/padding_md"
+            android:paddingEnd="@dimen/padding_md"
+            android:paddingTop="@dimen/padding_sm"
+            android:paddingBottom="@dimen/padding_sm"
+            android:background="@color/white"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="@dimen/text_md"
+                android:textStyle="bold"
+                android:text="状况描述"
+                tools:ignore="HardcodedText" />
+            <EditText
+                android:id="@+id/et_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_md"
+                android:hint="输入文字，描述桥梁情况"
+                android:background="@drawable/shape_edit_text"
+                android:gravity="top"
+                android:padding="@dimen/padding_sm"
+                android:textSize="@dimen/text_md"
+                android:lines="5"
+                android:maxLines="24"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+        <!--桥梁照片-->
+        <LinearLayout
+            android:id="@+id/rl_photo_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/padding_md"
+            android:background="@drawable/ripple_white"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_md"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:text="状况照片"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:scaleType="centerCrop"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="@dimen/margin_lg"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="center"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_btn_right_gray"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

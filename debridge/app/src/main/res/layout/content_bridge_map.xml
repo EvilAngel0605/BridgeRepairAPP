@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="net.jsrbc.activity.bridge.BridgeMapActivity"
+    tools:showIn="@layout/activity_bridge_map">
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/btn_nav"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/btn_md"
+        android:paddingStart="@dimen/text_md"
+        android:paddingEnd="@dimen/padding_md"
+        android:layout_marginBottom="@dimen/margin_lg"
+        android:background="@drawable/ripple_rect_dark"
+        android:drawableStart="@drawable/ic_menu_nav"
+        android:drawablePadding="@dimen/padding_sm"
+        android:textColor="@color/white"
+        android:text="开始导航"
+        tools:ignore="HardcodedText" />
+
+    <ImageButton
+        android:id="@+id/ib_my_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:layout_marginBottom="@dimen/margin_lg"
+        android:background="@drawable/ripple_circle_location"
+        android:src="@drawable/ic_map_location"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/ib_bridge_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@id/ib_my_location"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:layout_marginBottom="@dimen/margin_md"
+        android:background="@drawable/ripple_circle_location"
+        android:src="@drawable/ic_map_bridge"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/ib_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@id/ib_bridge_location"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:layout_marginBottom="@dimen/margin_md"
+        android:background="@drawable/ripple_circle_location"
+        android:src="@drawable/ic_action_cancel"
+        android:visibility="gone"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/ib_set_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_above="@id/ib_cancel"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:layout_marginBottom="@dimen/margin_md"
+        android:background="@drawable/ripple_circle_location"
+        android:src="@drawable/ic_map_check"
+        android:visibility="gone"
+        tools:ignore="ContentDescription" />
+</RelativeLayout>

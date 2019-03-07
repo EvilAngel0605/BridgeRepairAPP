@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/mi_clear"
+        android:title="清除"
+        android:icon="@drawable/ic_btn_clear"
+        android:enabled="false"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText" />
+    <item android:id="@+id/mi_back"
+        android:title="撤销"
+        android:icon="@drawable/ic_btn_back"
+        android:enabled="false"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText" />
+    <item android:id="@+id/mi_forward"
+        android:title="前进"
+        android:icon="@drawable/ic_btn_forward"
+        android:enabled="false"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText" />
+    <item android:id="@+id/mi_save"
+        android:title="@string/action_save"
+        android:icon="@drawable/ic_btn_save"
+        android:enabled="true"
+        app:showAsAction="always"/>
+</menu>

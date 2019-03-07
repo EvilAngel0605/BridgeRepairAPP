@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray">
+
+    <include layout="@layout/common_toolbar"/>
+
+    <!--下载-->
+    <RelativeLayout
+        android:id="@+id/rl_task_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll_action"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+            <CheckBox
+                android:id="@+id/cb_selectAll"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/text_lg"
+                android:text="@string/checkbox_select_all_text"/>
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/padding_sm"
+                android:paddingTop="@dimen/padding_sm"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_lg"/>
+                <TextView
+                    android:id="@+id/tv_remain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_md"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_download"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="@dimen/text_lg"
+                android:textColor="@color/white"
+                android:background="@drawable/ripple_red"
+                android:text="@string/btn_download_text"/>
+        </LinearLayout>
+
+        <!--无任务单的视图-->
+        <TextView
+            android:id="@+id/no_task_tips"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/ic_hint_task"
+            android:visibility="gone"
+            android:textSize="@dimen/text_md"
+            android:text="@string/tip_no_task"/>
+
+        <TextView
+            android:id="@+id/tv_div"
+            android:layout_above="@id/ll_action"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+        <!--任务单列表-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_task_list"
+            android:layout_above="@id/tv_div"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+</LinearLayout>

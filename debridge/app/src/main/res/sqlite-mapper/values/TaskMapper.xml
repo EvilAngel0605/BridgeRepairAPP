@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addOrReplaceTaskList">
+        INSERT OR REPLACE INTO TBL_TASK (ID, NAME, TYPE, MANAGER_NAME, NOTES, START_DATE, TOTAL, PROGRESS)
+        VALUES(#{id}, #{name}, #{type}, #{managerName}, #{notes}, #{startDate}, #{total}, #{progress})
+    </string>
+
+    <string name="updateTaskProgress">
+        UPDATE TBL_TASK SET PROGRESS=#{progress} WHERE ID=#{id}
+    </string>
+
+    <string name="getTaskList">
+        SELECT * FROM TBL_TASK ORDER BY TYPE, START_DATE DESC
+    </string>
+
+    <string name="deleteTask">
+        DELETE FROM TBL_TASK WHERE ID=#{taskId}
+    </string>
+
+    <string name="deleteTaskBridge">
+        DELETE FROM TBL_BRIDGE WHERE TASK_ID=#{taskId};
+    </string>
+
+    <string name="deleteTaskSide">
+        DELETE FROM TBL_BRIDGE_SIDE WHERE TASK_ID=#{taskId};
+    </string>
+
+    <string name="deleteTaskSite">
+        DELETE FROM TBL_BRIDGE_SITE WHERE EXISTS (SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=TBL_BRIDGE_SITE.BRIDGE_ID AND SIDE_TYPE_ID=TBL_BRIDGE_SITE.SIDE_TYPE_ID AND TASK_ID=#{taskId});
+    </string>
+
+    <string name="deleteTaskParts">
+        DELETE FROM TBL_BRIDGE_PARTS WHERE EXISTS (SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=TBL_BRIDGE_PARTS.BRIDGE_ID AND SIDE_TYPE_ID=TBL_BRIDGE_PARTS.SIDE_TYPE_ID AND TASK_ID=#{taskId});
+    </string>
+
+    <string name="deleteTaskMember">
+        DELETE FROM TBL_BRIDGE_MEMBER WHERE EXISTS (SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=TBL_BRIDGE_MEMBER.BRIDGE_ID AND SIDE_TYPE_ID=TBL_BRIDGE_MEMBER.SIDE_TYPE_ID AND TASK_ID=#{taskId});
+    </string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+        <item android:id="@+id/mi_front"
+            android:title="正面照"
+            tools:ignore="HardcodedText" />
+
+        <item android:id="@+id/mi_side"
+            android:title="侧面照"
+            tools:ignore="HardcodedText" />
+
+        <item android:id="@+id/mi_upward"
+            android:title="仰视照"
+            tools:ignore="HardcodedText" />
+    </group>
+
+</menu>

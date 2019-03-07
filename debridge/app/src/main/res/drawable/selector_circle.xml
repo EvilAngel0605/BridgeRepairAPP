@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <shape android:shape="oval">
+            <solid android:color="@color/trans_red"/>
+            <!--设置为圆形-->
+            <size android:width="100dp"/>
+            <size android:height="100dp"/>
+            <!-- 设置一下边距,让空间大一点 -->
+            <padding
+                android:bottom="5dp"
+                android:left="5dp"
+                android:right="5dp"
+                android:top="5dp" />
+        </shape>
+    </item>
+    <item android:state_selected="false">
+        <shape android:shape="oval">
+            <solid android:color="@color/transparent"/>
+            <!--设置为圆形-->
+            <size android:width="100dp"/>
+            <size android:height="100dp"/>
+            <!-- 设置一下边距,让空间大一点 -->
+            <padding
+                android:bottom="5dp"
+                android:left="5dp"
+                android:right="5dp"
+                android:top="5dp" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/common_toolbar"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <net.jsrbc.view.PaletteView
+            android:id="@+id/pv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/iv_rect"
+            style="@style/palettePaintStyle"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_btn_rect"
+            tools:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/iv_line"
+            style="@style/palettePaintStyle"
+            android:layout_toStartOf="@id/iv_rect"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/ic_btn_pencil"
+            tools:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/iv_oval"
+            style="@style/palettePaintStyle"
+            android:layout_toEndOf="@id/iv_rect"
+            android:layout_marginStart="50dp"
+            android:src="@drawable/ic_btn_oval"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

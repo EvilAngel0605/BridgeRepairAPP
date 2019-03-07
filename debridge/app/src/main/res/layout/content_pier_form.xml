@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="net.jsrbc.activity.member.PierFormActivity"
+    tools:showIn="@layout/activity_pier_form">
+    <TextView
+        android:layout_margin="@dimen/margin_sm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_sm"
+        android:text="范围及桥墩类型"
+        tools:ignore="HardcodedText" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:background="@color/white"
+            android:padding="@dimen/padding_sm"
+            style="@style/FormInputWrapper">
+            <TextView
+                style="@style/FormInputLabel"
+                android:text="*起始墩号"
+                tools:ignore="HardcodedText" />
+            <EditText
+                android:id="@+id/et_start_pier_no"
+                style="@style/FormInput"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:hint="输入起始墩号"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:background="@color/white"
+            android:padding="@dimen/padding_sm"
+            style="@style/FormInputWrapper">
+            <TextView
+                style="@style/FormInputLabel"
+                android:text="*结束墩号"
+                tools:ignore="HardcodedText" />
+            <EditText
+                android:id="@+id/et_end_pier_no"
+                style="@style/FormInput"
+                android:inputType="number"
+                android:imeOptions="actionDone"
+                android:hint="输入结束墩号"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:background="@color/white"
+            android:padding="@dimen/padding_sm"
+            style="@style/FormInputWrapper">
+            <TextView
+                style="@style/FormInputLabel"
+                android:text="*桥墩类型"
+                tools:ignore="HardcodedText" />
+            <Spinner
+                android:id="@+id/sp_pier_type"
+                style="@style/FormSpinner"/>
+        </LinearLayout>
+    </LinearLayout>
+    <!--对应结构类型的部件列表-->
+    <TextView
+        android:layout_margin="@dimen/margin_sm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_sm"
+        android:text="部构件类型及数量"
+        tools:ignore="HardcodedText" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_member_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/tv_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableTop="@drawable/ic_hint_empty_bridge"
+            android:drawablePadding="@dimen/padding_sm"
+            android:textSize="@dimen/text_md"
+            android:textColor="@color/gray_dark"
+            android:text="@string/tip_no_parts"/>
+    </FrameLayout>
+</LinearLayout>

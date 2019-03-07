@@ -1,0 +1,266 @@
+<resources>
+
+    <!-- App主题 -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
+    </style>
+
+    <!--去除ActionBar的主题-->
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--起始页全屏主题-->
+    <style name="FullscreenTheme" parent="AppTheme.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--主页Tab标签主题-->
+    <style name="MainTabBarItem">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/padding_sm</item>
+        <item name="android:layout_marginStart">@dimen/margin_sm</item>
+        <item name="android:layout_marginEnd">@dimen/margin_sm</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--主页侧边栏-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--主页地图信息窗口-->
+    <style name="BridgeInfoTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/red_light</item>
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BridgeInfoText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_sm</item>
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textSize">@dimen/text_sm</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <!--百度地图点聚合-->
+    <style name="Bubble.TextAppearance.Dark" parent="android:TextAppearance.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#ff7f7f7f</item>
+    </style>
+
+    <style name="Bubble.TextAppearance.Light" parent="Bubble.TextAppearance.Dark">
+        <item name="android:textColor">#ffeeeeee</item>
+    </style>
+
+    <style name="ClusterIcon.TextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">#ffeeeeee</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--桥梁信息界面-->
+    <style name="BridgeThumbnailWrapper">
+        <item name="android:layout_width">@dimen/thumbnailSize</item>
+        <item name="android:layout_height">@dimen/thumbnailSize</item>
+        <item name="android:elevation">@dimen/elevation_md</item>
+        <item name="android:layout_marginStart">@dimen/margin_sm</item>
+        <item name="android:background">@drawable/ripple_white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="NoPhotoTip">
+        <item name="android:layout_width">@dimen/thumbnailSize</item>
+        <item name="android:layout_height">@dimen/thumbnailSize</item>
+        <item name="android:background">@color/gray_light</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textSize">@dimen/text_sm</item>
+        <item name="android:gravity">center</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="BridgeThumbnail">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_width">@dimen/thumbnailSize</item>
+        <item name="android:layout_height">@dimen/thumbnailSize</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="BridgeInfoItemContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">@dimen/padding_md</item>
+        <item name="android:layout_marginTop">@dimen/margin_tiny</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="BridgeInfoItemTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BridgeInfoItemText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/margin_md</item>
+        <item name="android:textSize">@dimen/text_md</item>
+    </style>
+
+    <style name="BridgeInfoButton">
+        <item name="android:layout_margin">@dimen/margin_sm</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!--桥梁分幅表单界面-->
+    <style name="FormInput">
+        <item name="android:layout_weight">4</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/padding_sm</item>
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@drawable/shape_edit_text_normal</item>
+    </style>
+
+    <style name="FormInputWrapper">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="FormSpinner">
+        <item name="android:layout_weight">4</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/padding_sm</item>
+        <item name="android:spinnerMode">dialog</item>
+        <item name="android:background">@drawable/shape_edit_text_normal</item>
+    </style>
+
+    <style name="FormSeekBar">
+        <item name="android:layout_weight">4</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:background">@drawable/shape_edit_text_normal</item>
+    </style>
+
+    <style name="FormInputLabel">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:layout_marginEnd">@dimen/margin_sm</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="FormButton">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/ripple_dark</item>
+        <item name="android:textSize">@dimen/text_lg</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="FormCheck">
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/padding_md</item>
+        <item name="android:paddingBottom">@dimen/padding_md</item>
+    </style>
+
+    <style name="FormSwitch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:paddingTop">@dimen/padding_md</item>
+        <item name="android:paddingBottom">@dimen/padding_md</item>
+    </style>
+
+    <!--画笔按钮-->
+    <style name="palettePaintStyle">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:background">@drawable/selector_circle</item>
+    </style>
+
+    <!--列表为空的视图-->
+    <style name="EmptyViewStyle">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableTop">@drawable/ic_hint_empty_bridge</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="InspectionButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <!--设置视图-->
+    <style name="SettingItemWrapper">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/padding_sm</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/ripple_white</item>
+    </style>
+
+    <style name="SettingItemTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_lg</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="SettingItemContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_sm</item>
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textColor">@color/gray_dark</item>
+    </style>
+</resources>

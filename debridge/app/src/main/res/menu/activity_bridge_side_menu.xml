@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_member_manage"
+        android:title="@string/bridge_side_action_member_manage"/>
+    <item android:id="@+id/action_structure_manage"
+        android:title="@string/bridge_side_action_structure_manage"/>
+    <item android:id="@+id/action_copy_side"
+        android:title="复制分幅及部构件"
+        tools:ignore="HardcodedText" />
+</menu>

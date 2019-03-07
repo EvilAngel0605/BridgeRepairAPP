@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addOrReplaceBridgeMemberList">
+        INSERT OR REPLACE INTO TBL_BRIDGE_MEMBER (ID, BRIDGE_ID, SIDE_TYPE_ID, SITE_NO, PARTS_TYPE_ID, MEMBER_TYPE_ID, STAKE_SIDE, SPECIAL_SECTION, HORIZONTAL_NO, VERTICAL_NO)
+        VALUES (#{id}, #{bridgeId}, #{sideTypeId}, #{siteNo}, #{partsTypeId}, #{memberTypeId}, #{stakeSide}, #{specialSection}, #{horizontalNo}, #{verticalNo})
+    </string>
+
+    <string name="deleteSuperMemberRangeOf">
+        DELETE FROM TBL_BRIDGE_MEMBER
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE POSITION_TYPE_ID=(SELECT ID FROM TBL_PARAM_POSITION_TYPE WHERE NAME=\'上部结构\') AND ID=TBL_BRIDGE_MEMBER.PARTS_TYPE_ID)
+        AND SITE_NO BETWEEN #{startSiteNo} AND #{endSiteNo}
+    </string>
+    
+    <string name="deletePierMemberRangeOf">
+        DELETE FROM TBL_BRIDGE_MEMBER
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE ID=TBL_BRIDGE_MEMBER.PARTS_TYPE_ID AND NAME=\'桥墩\')
+        AND SITE_NO BETWEEN #{startSiteNo} AND #{endSiteNo}
+    </string>
+
+    <string name="deletePierBaseMemberRangeOf">
+        DELETE FROM TBL_BRIDGE_MEMBER
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_MEMBER_TYPE WHERE ID=TBL_BRIDGE_MEMBER.MEMBER_TYPE_ID AND NAME=\'墩基础\')
+        AND SITE_NO BETWEEN #{startSiteNo} AND #{endSiteNo}
+    </string>
+    
+    <string name="deleteAbutmentMember">
+        DELETE FROM TBL_BRIDGE_MEMBER
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE ID=TBL_BRIDGE_MEMBER.PARTS_TYPE_ID AND NAME=\'桥台\')
+    </string>
+    
+    <string name="deleteAbutmentBaseMember">
+        DELETE FROM TBL_BRIDGE_MEMBER
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_MEMBER_TYPE WHERE ID=TBL_BRIDGE_MEMBER.MEMBER_TYPE_ID AND NAME=\'台基础\')
+    </string>
+
+    <string name="deleteAbutmentAttachMember">
+        DELETE FROM TBL_BRIDGE_MEMBER
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE ID=TBL_BRIDGE_MEMBER.PARTS_TYPE_ID AND NAME IN (\'翼墙、耳墙\',\'锥坡、护坡\'))
+    </string>
+    
+    <string name="deleteMemberRangeOf">
+        DELETE FROM TBL_BRIDGE_MEMBER
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND PARTS_TYPE_ID=#{partsTypeId}
+        AND SITE_NO BETWEEN #{startSiteNo} AND #{endSiteNo}
+    </string>
+
+    <string name="deleteDeckMemberRangeOf">
+        DELETE FROM TBL_BRIDGE_MEMBER
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE ID=TBL_BRIDGE_MEMBER.PARTS_TYPE_ID AND NAME IN (\'桥面铺装\',\'人行道\',\'栏杆、护栏\',\'排水系统\',\'照明、标志\'))
+        AND SITE_NO=#{siteNo}
+    </string>
+    
+    <string name="deleteExpansionJointMemberRangeOf">
+        DELETE FROM TBL_BRIDGE_MEMBER
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE ID=TBL_BRIDGE_MEMBER.PARTS_TYPE_ID AND NAME=\'伸缩缝装置\')
+        AND SITE_NO=#{siteNo}
+    </string>
+
+    <string name="deleteBridgeMemberByParts">
+        DELETE FROM TBL_BRIDGE_MEMBER
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND SITE_NO=#{siteNo}
+        AND PARTS_TYPE_ID=#{partsTypeId}
+        AND MEMBER_TYPE_ID=#{memberTypeId}
+    </string>
+
+    <string name="getBridgeMemberList">
+        SELECT BM.*,
+            (SELECT MAX(SITE_NO) FROM TBL_BRIDGE_SITE WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}) AS MAX_SITE_NO,
+            BS.JOINT_NO AS JOINT_NO,
+            MT.NAME AS MEMBER_TYPE_NAME,
+            MD.MEMBER_DESC,
+            BP.HORIZONTAL_COUNT,
+            BP.VERTICAL_COUNT
+        FROM TBL_BRIDGE_MEMBER BM
+        INNER JOIN TBL_BRIDGE_SITE BS ON BM.BRIDGE_ID=BS.BRIDGE_ID AND BM.SIDE_TYPE_ID=BS.SIDE_TYPE_ID AND BM.SITE_NO=BS.SITE_NO
+        INNER JOIN TBL_BRIDGE_PARTS BP ON BP.BRIDGE_ID=BM.BRIDGE_ID AND BP.SIDE_TYPE_ID=BM.SIDE_TYPE_ID AND BP.SITE_NO=BM.SITE_NO AND BP.PARTS_TYPE_ID=BM.PARTS_TYPE_ID AND BP.MEMBER_TYPE_ID=BM.MEMBER_TYPE_ID
+        INNER JOIN TBL_PARAM_MEMBER_TYPE MT ON MT.ID=BM.MEMBER_TYPE_ID
+        INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MD.ID=MT.MEMBER_DESC_ID
+        WHERE BM.BRIDGE_ID=#{bridgeId} AND BM.SIDE_TYPE_ID=#{sideTypeId} AND BM.SITE_NO=#{siteNo} AND BM.MEMBER_TYPE_ID=#{memberTypeId}
+        ORDER BY BM.SPECIAL_SECTION ASC,BM.STAKE_SIDE ASC, BM.VERTICAL_NO ASC
+    </string>
+
+    <string name="getBridgeMemberListBySide">
+        SELECT * FROM TBL_BRIDGE_MEMBER WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+    </string>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="net.jsrbc.activity.disease.OverallSituationActivity"
+    tools:showIn="@layout/activity_overall_situation">
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_hint_empty_bridge"
+        android:visibility="gone"
+        android:textSize="@dimen/text_md"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:text="暂无状况记录"
+        tools:ignore="HardcodedText" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_overall_situation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

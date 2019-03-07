@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addOrReplaceBridgeSiteList">
+        INSERT OR REPLACE INTO TBL_BRIDGE_SITE (ID, BRIDGE_ID, SIDE_TYPE_ID, SITE_NO, JOINT_NO, SPAN, UPLOAD)
+        VALUES (#{id}, #{bridgeId}, #{sideTypeId}, #{siteNo}, #{jointNo}, #{span}, #{upload})
+    </string>
+
+    <string name="deleteBridgeSiteBySide">
+        DELETE FROM TBL_BRIDGE_SITE WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+    </string>
+    
+    <string name="getSiteCountBySide">
+        SELECT COUNT(*) FROM TBL_BRIDGE_SITE WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+    </string>
+
+    <string name="getSiteCountForUpload">
+        SELECT COUNT(*) FROM TBL_BRIDGE_SITE WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId} AND UPLOAD=1
+    </string>
+
+    <string name="getBridgeSiteListBySide">
+        SELECT  BS.ID, BS.BRIDGE_ID, BS.SIDE_TYPE_ID, BS.SITE_NO, BS.JOINT_NO, BS.SPAN,
+        STR.NAME AS SUPERSTRUCTURE_TYPE_NAME,
+        STR.SUPERSTRUCTURE_MATERIAL_TYPE_NAME,
+        (SELECT COUNT(*) FROM TBL_BRIDGE_MEMBER WHERE BRIDGE_ID=BS.BRIDGE_ID AND SIDE_TYPE_ID=BS.SIDE_TYPE_ID AND SITE_NO=BS.SITE_NO) AS MEMBER_COUNT
+        FROM TBL_BRIDGE_SITE AS BS
+        LEFT OUTER JOIN (
+            SELECT ST.NAME, BP.BRIDGE_ID, BP.SIDE_TYPE_ID, GROUP_CONCAT(DISTINCT PT.NAME) AS SUPERSTRUCTURE_MATERIAL_TYPE_NAME, BP.SITE_NO
+            FROM TBL_BRIDGE_PARTS BP
+            INNER JOIN TBL_PARAM_STRUCTURE_TYPE ST ON ST.ID=BP.STRUCTURE_TYPE_ID
+            INNER JOIN TBL_PARAM_STRUCTURE_GROUP SG ON SG.ID=ST.STRUCTURE_GROUP_ID AND SG.FIELD=\'SUPERSTRUCTURE_TYPE\'
+            INNER JOIN TBL_PARAM_TYPE PT ON PT.ID=BP.MATERIAL_TYPE_ID
+            INNER JOIN TBL_PARAM_PARTS_TYPE PPT ON PPT.ID=BP.PARTS_TYPE_ID
+            WHERE PPT.MAIN_PARTS=1
+            GROUP BY ST.NAME, BP.BRIDGE_ID, BP.SIDE_TYPE_ID, BP.SITE_NO
+        ) AS STR ON STR.BRIDGE_ID=BS.BRIDGE_ID AND STR.SIDE_TYPE_ID=BS.SIDE_TYPE_ID AND STR.SITE_NO=BS.SITE_NO
+        WHERE BS.BRIDGE_ID=#{bridgeId} AND BS.SIDE_TYPE_ID=#{sideTypeId}
+        ORDER BY BS.SITE_NO ASC
+    </string>
+
+    <string name="setSiteUploadSuccess">
+        UPDATE TBL_BRIDGE_SITE SET UPLOAD=0 WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+    </string>
+</resources>

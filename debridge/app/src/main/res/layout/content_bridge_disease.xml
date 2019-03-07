@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="net.jsrbc.activity.bridge.BridgeListActivity"
+    tools:showIn="@layout/activity_bridge_disease">
+
+    <TextView
+        android:id="@+id/tv_empty"
+        style="@style/EmptyViewStyle"
+        android:text="病害列表为空"
+        tools:ignore="HardcodedText" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_bridge_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/tv_button_area"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_sm"
+        android:background="@color/trans_white"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/margin_sm"
+        android:layout_marginEnd="@dimen/margin_sm"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:layout_marginBottom="@dimen/margin_md"
+        app:borderWidth="0dp"
+        app:srcCompat="@drawable/ic_btn_add_white"
+        tools:ignore="RelativeOverlap" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_deck"
+        android:visibility="gone"
+        style="@style/InspectionButtonStyle"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/margin_sm"
+        android:backgroundTint="@color/white"
+        android:layout_above="@+id/fab_add"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/gray"
+        app:srcCompat="@drawable/ic_btn_deck"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_sub"
+        android:visibility="gone"
+        style="@style/InspectionButtonStyle"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/margin_sm"
+        android:backgroundTint="@color/white"
+        android:layout_above="@id/fab_deck"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/gray"
+        app:srcCompat="@drawable/ic_btn_sub"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_super"
+        android:visibility="gone"
+        style="@style/InspectionButtonStyle"
+        android:layout_above="@id/fab_sub"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/margin_sm"
+        android:backgroundTint="@color/white"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/gray"
+        app:srcCompat="@drawable/ic_btn_super" />
+
+    <Button
+        android:id="@+id/btn_siteNo"
+        android:visibility="gone"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_sm"
+        android:gravity="center"
+        android:textSize="@dimen/text_md"
+        android:maxLines="1"
+        android:background="@drawable/ripple_circle_white"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_next_site"
+        android:visibility="gone"
+        style="@style/InspectionButtonStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/btn_siteNo"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:layout_marginEnd="@dimen/margin_sm"
+        android:layout_marginBottom="@dimen/margin_md"
+        android:layout_marginTop="@dimen/margin_md"
+        android:backgroundTint="@color/white"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/gray"
+        app:srcCompat="@drawable/ic_btn_next"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_prev_site"
+        android:visibility="gone"
+        style="@style/InspectionButtonStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/margin_sm"
+        android:layout_marginEnd="@dimen/margin_sm"
+        android:layout_marginBottom="@dimen/margin_md"
+        android:layout_marginTop="@dimen/margin_md"
+        android:backgroundTint="@color/white"
+        android:layout_toStartOf="@id/btn_siteNo"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/gray"
+        app:srcCompat="@drawable/ic_btn_prev"/>
+</RelativeLayout>

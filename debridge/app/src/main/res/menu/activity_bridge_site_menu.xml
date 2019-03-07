@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item android:id="@+id/mi_span_combination" android:title="@string/bridge_site_span_combination_menu"/>
+    </group>
+    <group>
+        <item android:id="@+id/mi_superstructure" android:title="@string/bridge_site_superstructure_menu"/>
+    </group>
+    <group>
+        <item android:id="@+id/mi_pier" android:title="@string/bridge_site_pier_menu"/>
+        <item android:id="@+id/mi_abutment" android:title="@string/bridge_site_abutment_menu"/>
+        <item android:id="@+id/mi_riverbed" android:title="@string/bridge_site_riverbed_menu"/>
+        <item android:id="@+id/mi_regulating" android:title="@string/bridge_site_regulating_menu"/>
+        <item android:id="@+id/mi_deck" android:title="@string/bridge_site_deck_menu"/>
+        <item android:id="@+id/mi_expansion_joint" android:title="@string/bridge_site_expansion_joint_menu"/>
+    </group>
+</menu>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="clearBaseData">
+        BEGIN;
+        DELETE FROM TBL_PARAM_GROUP;
+        DELETE FROM TBL_PARAM_TYPE;
+        DELETE FROM TBL_PARAM_STRUCTURE_GROUP;
+        DELETE FROM TBL_PARAM_STRUCTURE_TYPE;
+        DELETE FROM TBL_PARAM_POSITION_TYPE;
+        DELETE FROM TBL_PARAM_PARTS_TYPE;
+        DELETE FROM TBL_PARAM_MEMBER_TYPE;
+        DELETE FROM TBL_PARAM_MEMBER_DESC;
+        DELETE FROM TBL_R_BRIDGE_PARTS;
+        DELETE FROM TBL_R_ABUTMENT_MEMBER;
+        DELETE FROM TBL_R_SUPERSTRUCTURE_MEMBER;
+        DELETE FROM TBL_PARAM_DISEASE_DESC;
+        DELETE FROM TBL_PARAM_DISEASE_TYPE;
+        DELETE FROM TBL_PARAM_EVALUATION_INDEX;
+        DELETE FROM TBL_R_MEMBER_DISEASE;
+        COMMIT;
+    </string>
+
+    <string name="addOrReplaceParamGroupList">
+        INSERT OR REPLACE INTO TBL_PARAM_GROUP (ID, NAME, FIELD, NOTES)
+        VALUES (#{id}, #{name}, #{field}, #{notes})
+    </string>
+
+    <string name="addOrReplaceParamTypeList">
+        INSERT OR REPLACE INTO TBL_PARAM_TYPE (ID, NAME, GROUP_ID, NOTES, SORT_NO)
+        VALUES (#{id}, #{name}, #{groupId}, #{notes}, #{sortNo})
+    </string>
+
+    <string name="addOrReplaceStructureGroupList">
+        INSERT OR REPLACE INTO TBL_PARAM_STRUCTURE_GROUP (ID, NAME, FIELD, PARENT_ID, NOTES)
+        VALUES (#{id}, #{name}, #{field}, #{parentId}, #{notes})
+    </string>
+
+    <string name="addOrReplaceStructureTypeList">
+        INSERT OR REPLACE INTO TBL_PARAM_STRUCTURE_TYPE (ID, NAME, STRUCTURE_GROUP_ID, PARENT_ID, NOTES, SORT_NO)
+        VALUES (#{id}, #{name}, #{structureGroupId}, #{parentId}, #{notes}, #{sortNo})
+    </string>
+    
+    <string name="addOrReplacePositionTypeList">
+        INSERT OR REPLACE INTO TBL_PARAM_POSITION_TYPE (ID, NAME, WEIGHT, NOTES, SORT_NO)
+        VALUES (#{id}, #{name}, #{weight}, #{notes}, #{sortNo})
+    </string>
+
+    <string name="addOrReplacePartsTypeList">
+        INSERT OR REPLACE INTO TBL_PARAM_PARTS_TYPE (ID, NAME, POSITION_TYPE_ID, NOTES, MAIN_PARTS, SORT_NO)
+        VALUES (#{id}, #{name}, #{positionTypeId}, #{notes}, #{mainParts}, #{sortNo})
+    </string>
+    
+    <string name="addOrReplaceMemberTypeList">
+        INSERT OR REPLACE INTO TBL_PARAM_MEMBER_TYPE (ID, NAME, PARTS_TYPE_ID, MEMBER_DESC_ID, NOTES, SORT_NO)
+        VALUES (#{id}, #{name}, #{partsTypeId}, #{memberDescId}, #{notes}, #{sortNo})
+    </string>
+
+    <string name="addOrReplaceMemberDescList">
+        INSERT OR REPLACE INTO TBL_PARAM_MEMBER_DESC (ID, NAME, MEMBER_DESC, SORT_NO)
+        VALUES (#{id}, #{name}, #{memberDesc}, #{sortNo})
+    </string>
+    
+    <string name="addOrReplaceBridgePartsRelationList">
+        INSERT OR REPLACE INTO TBL_R_BRIDGE_PARTS (ID, BRIDGE_TYPE_ID, PARTS_TYPE_ID, WEIGHT)
+        VALUES (#{id}, #{bridgeTypeId}, #{partsTypeId}, #{weight})
+    </string>
+
+    <string name="addOrReplaceAbutmentMemberRelationList">
+        INSERT OR REPLACE INTO TBL_R_ABUTMENT_MEMBER (ID, ABUTMENT_TYPE_ID, MEMBER_TYPE_ID)
+        VALUES (#{id}, #{abutmentTypeId}, #{memberTypeId})
+    </string>
+
+    <string name="addOrReplaceSuperstructureMemberRelationList">
+        INSERT OR REPLACE INTO TBL_R_SUPERSTRUCTURE_MEMBER (ID, SUPERSTRUCTURE_TYPE_ID, MEMBER_TYPE_ID)
+        VALUES (#{id}, #{superstructureTypeId}, #{memberTypeId})
+    </string>
+
+    <string name="addOrReplaceDiseaseDescList">
+        INSERT OR REPLACE INTO TBL_PARAM_DISEASE_DESC (ID, DISEASE_DESC_TYPE_ID, DISEASE_DESC, SORT_NO)
+        VALUES (#{id}, #{diseaseDescTypeId}, #{diseaseDesc}, #{sortNo})
+    </string>
+
+    <string name="addOrReplaceDiseaseTypeList">
+        INSERT OR REPLACE INTO TBL_PARAM_DISEASE_TYPE (ID, NAME, PARTS_TYPE_ID, EVALUATION_INDEX_ID, NOTES)
+        VALUES (#{id}, #{name}, #{partsTypeId}, #{evaluationIndexId}, #{notes})
+    </string>
+
+    <string name="addOrReplaceEvaluationIndexList">
+        INSERT OR REPLACE INTO TBL_PARAM_EVALUATION_INDEX (ID, NAME, MAX_SCALE, POSITION_TYPE_ID, NOTES, SORT_NO)
+        VALUES (#{id}, #{name}, #{maxScale}, #{positionTypeId}, #{notes}, #{sortNo})
+    </string>
+    
+    <string name="addOrReplaceMemberDiseaseRelationList">
+        INSERT OR REPLACE INTO TBL_R_MEMBER_DISEASE (ID, MATERIAL_TYPE_ID, MEMBER_TYPE_ID, DISEASE_TYPE_ID, DISEASE_DESC_TYPE_ID, SORT_NO)
+        VALUES (#{id}, #{materialTypeId}, #{memberTypeId}, #{diseaseTypeId}, #{diseaseDescTypeId}, #{sortNo})
+    </string>
+
+    <string name="getParamTypeListByGroupField">
+        SELECT PT.*
+        FROM TBL_PARAM_TYPE AS PT
+        INNER JOIN TBL_PARAM_GROUP AS PG ON PG.ID=PT.GROUP_ID
+        WHERE PG.FIELD=#{field}
+        ORDER BY PT.SORT_NO ASC
+    </string>
+    
+    <string name="getStructureTypeByGroupField">
+        SELECT ST.*
+        FROM TBL_PARAM_STRUCTURE_TYPE AS ST
+        INNER JOIN TBL_PARAM_STRUCTURE_GROUP AS SG ON SG.ID=ST.STRUCTURE_GROUP_ID
+        WHERE SG.FIELD=#{field}
+        ORDER BY ST.SORT_NO ASC
+    </string>
+</resources>

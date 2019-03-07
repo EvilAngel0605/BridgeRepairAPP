@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--服务器地址-->
+    <string name="server_url">http://61.132.52.36:9001/jsbridge</string>
+    <!--<string name="server_url">http://192.168.191.1/jsbridge</string>-->
+    <!--应用文件存放路径-->
+    <string name="basePath">/ZZZ/</string>
+</resources>

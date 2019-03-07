@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addOrReplaceBridgeList">
+        INSERT OR REPLACE INTO TBL_BRIDGE
+        (ID, NAME, ROAD_NO, ROAD_NAME, ROAD_LEVEL_NAME, ADDRESS_NAME, FULL_ADDRESS_NAME, UNITS_NAME, FUNCTION_TYPE_NAME,
+        DNCROSS_NAME, DNCROSS_STAKE_NO, DESIGN_LOAD_NAME, LOAD_CAPACITY_NAME, SLOP, BRIDGE_CATEGORY_NAME, CROSS_TYPE_NAME, LONGITUDE, LATITUDE,
+        ACCELERATION_FACTOR, PIER_PROTECTOR, NORMAL_WATER_LEVEL, DESIGN_WATER_LEVEL, HISTORY_FLOOD_LEVEL, DECK_DIVIDE_TYPE_NAME, TASK_ID, TASK_BRIDGE_ID,
+        TASK_TYPE, BUILD_DATE_STR, BRIDGE_EVALUATION_LEVEL, INSPECTION_DATE)
+        VALUES
+        (#{id}, #{name}, #{roadNo}, #{roadName}, #{roadLevelName}, #{addressName}, #{fullAddressName}, #{unitsName}, #{functionTypeName},
+        #{dncrossName}, #{dncrossStakeNo}, #{designLoadName}, #{loadCapacityName}, #{slop}, #{bridgeCategoryName}, #{crossTypeName}, #{longitude}, #{latitude},
+        #{accelerationFactor}, #{pierProtector}, #{normalWaterLevel}, #{designWaterLevel}, #{historyFloodLevel}, #{deckDivideTypeName}, #{taskId}, #{taskBridgeId},
+        #{taskType}, #{buildDateStr}, #{bridgeEvaluationLevel}, #{inspectionDate})
+    </string>
+
+    <string name="getBridgeListByTaskType">
+        SELECT * FROM TBL_BRIDGE WHERE TASK_TYPE=#{taskType}
+    </string>
+
+    <string name="getBridgeListByTaskId">
+        SELECT * FROM
+            (SELECT (SELECT STAKE_NO FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=B.ID LIMIT 1) AS STAKE_NO,
+            (SELECT COUNT(*) FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=B.ID) AS SIDE_COUNT,
+            B.*
+            FROM TBL_BRIDGE B
+            WHERE TASK_ID=#{taskId})
+        ORDER BY ROAD_NO, STAKE_NO ASC
+    </string>
+
+    <string name="getBridgeById">
+        SELECT TBL_BRIDGE.*, (SELECT COUNT(*) FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=TBL_BRIDGE.ID) AS SIDE_COUNT
+        FROM TBL_BRIDGE WHERE ID=#{id}
+    </string>
+
+    <string name="getBridgeListForUpload">
+        SELECT * FROM
+        (
+            SELECT (SELECT STAKE_NO FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=B.ID LIMIT 1) AS STAKE_NO,
+            B.*
+            FROM TBL_BRIDGE B
+            WHERE UPLOAD_PHOTO=1 OR UPLOAD_LOCATION=1
+            OR EXISTS(SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=B.ID AND UPLOAD=1)
+            OR EXISTS(SELECT 1 FROM TBL_BRIDGE_SITE BS WHERE BRIDGE_ID=B.ID AND EXISTS(SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=BS.BRIDGE_ID AND SIDE_TYPE_ID=BS.SIDE_TYPE_ID) AND UPLOAD=1)
+            OR EXISTS(SELECT 1 FROM TBL_BRIDGE_PARTS BP WHERE BRIDGE_ID=B.ID AND EXISTS(SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=BP.BRIDGE_ID AND SIDE_TYPE_ID=BP.SIDE_TYPE_ID) AND UPLOAD=1)
+            OR EXISTS(SELECT 1 FROM TBL_BRIDGE_DISEASE BD WHERE BRIDGE_ID=B.ID AND EXISTS(SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=BD.BRIDGE_ID AND SIDE_TYPE_ID=BD.SIDE_TYPE_ID) AND UPLOAD=1)
+            OR EXISTS(SELECT 1 FROM TBL_BRIDGE_DISEASE_PHOTO DP INNER JOIN TBL_BRIDGE_DISEASE BD ON BD.ID=DP.DISEASE_ID WHERE BD.BRIDGE_ID=B.ID AND DP.UPLOAD=1)
+        )
+        ORDER BY ROAD_NO, STAKE_NO ASC
+    </string>
+
+    <string name="getBridgeCountForUpload">
+        SELECT COUNT(*)
+        FROM TBL_BRIDGE B
+        WHERE UPLOAD_PHOTO=1 OR UPLOAD_LOCATION=1
+        OR EXISTS(SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=B.ID AND UPLOAD=1)
+        OR EXISTS(SELECT 1 FROM TBL_BRIDGE_SITE BS WHERE BRIDGE_ID=B.ID AND EXISTS(SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=BS.BRIDGE_ID AND SIDE_TYPE_ID=BS.SIDE_TYPE_ID) AND UPLOAD=1)
+        OR EXISTS(SELECT 1 FROM TBL_BRIDGE_PARTS BP WHERE BRIDGE_ID=B.ID AND EXISTS(SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=BP.BRIDGE_ID AND SIDE_TYPE_ID=BP.SIDE_TYPE_ID) AND UPLOAD=1)
+        OR EXISTS(SELECT 1 FROM TBL_BRIDGE_DISEASE BD WHERE BRIDGE_ID=B.ID AND EXISTS(SELECT 1 FROM TBL_BRIDGE_SIDE WHERE BRIDGE_ID=BD.BRIDGE_ID AND SIDE_TYPE_ID=BD.SIDE_TYPE_ID) AND UPLOAD=1)
+        OR EXISTS(SELECT 1 FROM TBL_BRIDGE_DISEASE_PHOTO DP INNER JOIN TBL_BRIDGE_DISEASE BD ON BD.ID=DP.DISEASE_ID WHERE BD.BRIDGE_ID=B.ID AND DP.UPLOAD=1)
+    </string>
+
+    <string name="updateBridgePhoto">
+        UPDATE TBL_BRIDGE SET FRONT_PATH=#{frontPath}, SIDE_PATH=#{sidePath}, UPWARD_PATH=#{upwardPath}, UPLOAD_PHOTO=1
+        WHERE ID=#{id}
+    </string>
+
+    <string name="updateBridgeLocation">
+        UPDATE TBL_BRIDGE SET LATITUDE=#{latitude}, LONGITUDE=#{longitude}, UPLOAD_LOCATION=1 WHERE ID=#{id}
+    </string>
+
+    <string name="updateBridgeProgress">
+        UPDATE TBL_BRIDGE SET PROGRESS=#{progress} WHERE ID=#{id}
+    </string>
+
+    <string name="setBridgePhotoUploadSuccess">
+        UPDATE TBL_BRIDGE SET UPLOAD_PHOTO=0 WHERE ID=#{id}
+    </string>
+
+    <string name="setBridgeLocationUploadSuccess">
+        UPDATE TBL_BRIDGE SET UPLOAD_LOCATION=0 WHERE ID=#{id}
+    </string>
+</resources>

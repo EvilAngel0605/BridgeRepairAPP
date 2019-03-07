@@ -1,0 +1,42 @@
+<resources>
+    <!-- 默认-->
+    <dimen name="nav_header_height">176dp</dimen>
+
+    <!--字体大小分类-->
+    <dimen name="text_sm">10sp</dimen>
+    <dimen name="text_md">12sp</dimen>
+    <dimen name="text_lg">14sp</dimen>
+
+    <!--内边距大小分类-->
+    <dimen name="padding_sm">8dp</dimen>
+    <dimen name="padding_md">16dp</dimen>
+    <dimen name="padding_lg">32dp</dimen>
+
+    <!--外边距大小分类-->
+    <dimen name="margin_tiny">1dp</dimen>
+    <dimen name="margin_sm">8dp</dimen>
+    <dimen name="margin_md">16dp</dimen>
+    <dimen name="margin_lg">32dp</dimen>
+    <dimen name="margin_xl">60dp</dimen>
+
+    <!--倒角大小分类-->
+    <dimen name="radius_tiny">2dp</dimen>
+    <dimen name="radius_sm">8dp</dimen>
+    <dimen name="radius_md">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!--按钮大小-->
+    <dimen name="btn_sm">24dp</dimen>
+    <dimen name="btn_md">40dp</dimen>
+
+    <!--投影效果-->
+    <dimen name="elevation_md">5dp</dimen>
+    <dimen name="elevation_lg">16dp</dimen>
+
+    <!--特定宽度-->
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="seek_bar_height">60dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="thumbnailSize">60dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+</resources>

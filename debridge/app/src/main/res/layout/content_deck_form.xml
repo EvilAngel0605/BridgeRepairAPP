@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="net.jsrbc.activity.member.DeckFormActivity"
+    tools:showIn="@layout/activity_deck_form">
+
+    <LinearLayout
+        android:background="@color/white"
+        android:padding="@dimen/padding_sm"
+        style="@style/FormInputWrapper">
+        <TextView
+            style="@style/FormInputLabel"
+            android:text="孔跨范围"
+            tools:ignore="HardcodedText" />
+        <EditText
+            android:id="@+id/et_site_range"
+            style="@style/FormInput"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:hint="示例：1,2,3,4,5或者1-5"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:background="@color/white"
+        android:padding="@dimen/padding_sm"
+        style="@style/FormInputWrapper">
+        <TextView
+            style="@style/FormInputLabel"
+            android:text="桥面铺装"
+            tools:ignore="HardcodedText" />
+        <Spinner
+            android:id="@+id/sp_material_type"
+            style="@style/FormSpinner"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:background="@color/white"
+        android:paddingStart="@dimen/padding_sm"
+        android:paddingEnd="@dimen/padding_sm"
+        style="@style/FormInputWrapper">
+        <TextView
+            style="@style/FormInputLabel"
+            android:text="人行道"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/cb_side_walk_left"
+            style="@style/FormCheck"
+            android:layout_weight="1"
+            android:text="左侧"
+            tools:ignore="HardcodedText"/>
+
+        <CheckBox
+            android:id="@+id/cb_side_walk_right"
+            style="@style/FormCheck"
+            android:layout_marginStart="@dimen/margin_sm"
+            android:layout_weight="3"
+            android:text="右侧"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:background="@color/white"
+        android:paddingStart="@dimen/padding_sm"
+        android:paddingEnd="@dimen/padding_sm"
+        style="@style/FormInputWrapper">
+        <TextView
+            style="@style/FormInputLabel"
+            android:text="栏杆"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/cb_handrail_left"
+            style="@style/FormCheck"
+            android:layout_weight="1"
+            android:text="左侧"
+            tools:ignore="HardcodedText"/>
+
+        <CheckBox
+            android:id="@+id/cb_handrail_right"
+            style="@style/FormCheck"
+            android:layout_marginStart="@dimen/margin_sm"
+            android:layout_weight="3"
+            android:text="右侧"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:background="@color/white"
+        android:paddingStart="@dimen/padding_sm"
+        android:paddingEnd="@dimen/padding_sm"
+        style="@style/FormInputWrapper">
+        <TextView
+            style="@style/FormInputLabel"
+            android:text="护栏"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/cb_guardrail_left"
+            style="@style/FormCheck"
+            android:layout_weight="1"
+            android:text="左侧"
+            tools:ignore="HardcodedText"/>
+
+        <CheckBox
+            android:id="@+id/cb_guardrail_right"
+            style="@style/FormCheck"
+            android:layout_marginStart="@dimen/margin_sm"
+            android:layout_weight="3"
+            android:text="右侧"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:background="@color/white"
+        android:paddingStart="@dimen/padding_sm"
+        android:paddingEnd="@dimen/padding_sm"
+        style="@style/FormInputWrapper">
+        <TextView
+            style="@style/FormInputLabel"
+            android:text="排水系统"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/cb_drainage"
+            style="@style/FormCheck"
+            android:layout_weight="4"
+            android:text="存在"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:background="@color/white"
+        android:paddingStart="@dimen/padding_sm"
+        android:paddingEnd="@dimen/padding_sm"
+        style="@style/FormInputWrapper">
+        <TextView
+            style="@style/FormInputLabel"
+            android:text="照明标志"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/cb_illumination"
+            style="@style/FormCheck"
+            android:layout_weight="4"
+            android:text="存在"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+</LinearLayout>

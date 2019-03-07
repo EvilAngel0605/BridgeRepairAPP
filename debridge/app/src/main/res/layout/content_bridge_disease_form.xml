@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sv_form_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="net.jsrbc.activity.disease.BridgeDiseaseFormActivity"
+    tools:showIn="@layout/activity_bridge_disease_form">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_margin="@dimen/margin_sm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_sm"
+            android:text="病害照片"
+            tools:ignore="HardcodedText" />
+        <LinearLayout
+            android:id="@+id/ll_disease_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/ripple_white"
+            android:padding="@dimen/padding_sm"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                style="@style/FormInputLabel"
+                android:text="照片管理"
+                tools:ignore="HardcodedText" />
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:scaleType="centerCrop"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="@dimen/margin_lg"
+                tools:ignore="ContentDescription" />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="center"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_btn_right_gray"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+        <TextView
+            android:layout_margin="@dimen/margin_sm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_sm"
+            android:text="孔跨、构件及类型"
+            tools:ignore="HardcodedText" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="*当前孔号"
+                    tools:ignore="HardcodedText" />
+                <Spinner
+                    android:id="@+id/sp_site_no"
+                    style="@style/FormSpinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="*构件类型"
+                    tools:ignore="HardcodedText" />
+                <Spinner
+                    android:id="@+id/sp_member_type"
+                    style="@style/FormSpinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="*构件编号"
+                    tools:ignore="HardcodedText" />
+                <Spinner
+                    android:id="@+id/sp_member_no"
+                    style="@style/FormSpinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="*病害类型"
+                    tools:ignore="HardcodedText" />
+                <Spinner
+                    android:id="@+id/sp_disease_type"
+                    style="@style/FormSpinner"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--病害描述参数-->
+        <TextView
+            android:layout_margin="@dimen/margin_sm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_sm"
+            android:text="病害描述参数"
+            tools:ignore="HardcodedText" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="*描述方式"
+                    tools:ignore="HardcodedText" />
+                <Spinner
+                    android:id="@+id/sp_desc_type"
+                    style="@style/FormSpinner" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_long_position_start"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    android:id="@+id/tv_long_position_start"
+                    style="@style/FormInputLabel"
+                    android:text="距小桩号墩台起始距离"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_long_position_start"
+                    style="@style/FormInput"
+                    android:hint="单位：m"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_long_position_end"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="距小桩号墩台结束距离"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_long_position_end"
+                    style="@style/FormInput"
+                    android:hint="单位：m"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_horizontal_position_start"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    android:id="@+id/tv_horizontal_position_start"
+                    style="@style/FormInputLabel"
+                    android:text="距左缘起始距离"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_horizontal_position_start"
+                    style="@style/FormInput"
+                    android:hint="单位：m"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_horizontal_position_end"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="距左缘结束距离"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_horizontal_position_end"
+                    style="@style/FormInput"
+                    android:hint="单位：m"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_vertical_position_start"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    android:id="@+id/tv_vertical_position_start"
+                    style="@style/FormInputLabel"
+                    android:text="距上缘起始距离"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_vertical_position_start"
+                    style="@style/FormInput"
+                    android:hint="单位：m"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_vertical_position_end"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="距上缘结束距离"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_vertical_position_end"
+                    style="@style/FormInput"
+                    android:hint="单位：m"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_position"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="构件部位"
+                    tools:ignore="HardcodedText" />
+                <Spinner
+                    android:id="@+id/sp_position"
+                    style="@style/FormSpinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_count"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="病害数量"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_count"
+                    style="@style/FormInput"
+                    android:inputType="number"
+                    android:imeOptions="actionNext"
+                    android:hint="输入病害数量"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_angle"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="病害角度"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_angle"
+                    style="@style/FormInput"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    android:hint="输入病害角度，单位为度"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_min_length"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    android:id="@+id/tv_length_label"
+                    style="@style/FormInputLabel"
+                    android:text="长度"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_min_length"
+                    style="@style/FormInput"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_max_length"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="最大长度"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_max_length"
+                    style="@style/FormInput"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_min_width"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    android:id="@+id/tv_width_label"
+                    style="@style/FormInputLabel"
+                    android:text="宽度"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_min_width"
+                    style="@style/FormInput"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_max_width"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="最大宽度"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_max_width"
+                    style="@style/FormInput"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_min_depth"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    android:id="@+id/tv_depth_label"
+                    style="@style/FormInputLabel"
+                    android:text="深度"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_min_depth"
+                    style="@style/FormInput"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_max_depth"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="最大深度"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_max_depth"
+                    style="@style/FormInput"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_percent_degree"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="程度"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_percent_degree"
+                    style="@style/FormInput"
+                    android:inputType="numberDecimal"
+                    android:imeOptions="actionNext"
+                    android:hint="单位：%"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_desc_degree"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="程度"
+                    tools:ignore="HardcodedText" />
+                <Spinner
+                    android:id="@+id/sp_desc_degree"
+                    style="@style/FormSpinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_behavior_degree"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="性状描述"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_behavior_degree"
+                    style="@style/FormInput"
+                    android:imeOptions="actionNext"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="扣分标度"
+                    tools:ignore="HardcodedText" />
+                <Spinner
+                    android:id="@+id/sp_deduction_scale"
+                    style="@style/FormSpinner"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="重点关注"
+                    tools:ignore="HardcodedText" />
+
+                <FrameLayout
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/sc_significant"
+                        style="@style/FormSwitch" />
+                </FrameLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:background="@color/white"
+                android:padding="@dimen/padding_sm"
+                style="@style/FormInputWrapper">
+                <TextView
+                    style="@style/FormInputLabel"
+                    android:text="备注"
+                    tools:ignore="HardcodedText" />
+                <EditText
+                    android:id="@+id/et_notes"
+                    style="@style/FormInput"
+                    android:lines="4"
+                    android:maxLines="4"
+                    android:gravity="top"
+                    android:imeOptions="actionDone"
+                    android:hint="请输入备注"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

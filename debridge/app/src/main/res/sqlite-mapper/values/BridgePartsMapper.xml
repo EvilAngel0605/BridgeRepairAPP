@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addOrReplaceBridgePartsList">
+        INSERT OR REPLACE INTO TBL_BRIDGE_PARTS
+        (ID, BRIDGE_ID, SIDE_TYPE_ID, SITE_NO, STRUCTURE_TYPE_ID, MATERIAL_TYPE_ID, POSITION_TYPE_ID, PARTS_TYPE_ID,
+        MEMBER_TYPE_ID, HORIZONTAL_COUNT, VERTICAL_COUNT, MEMBER_DESC_ID, MEMBER_DESC, STAKE_SIDE, SPECIAL_SECTION, UPLOAD)
+        VALUES
+        (#{id}, #{bridgeId}, #{sideTypeId}, #{siteNo}, #{structureTypeId}, #{materialTypeId}, #{positionTypeId}, #{partsTypeId},
+        #{memberTypeId}, #{horizontalCount}, #{verticalCount}, #{memberDescId}, #{memberDesc}, #{stakeSide}, #{specialSection}, #{upload})
+    </string>
+
+    <string name="deleteSuperPartsRangeOf">
+        DELETE FROM TBL_BRIDGE_PARTS
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE POSITION_TYPE_ID=(SELECT ID FROM TBL_PARAM_POSITION_TYPE WHERE NAME=\'上部结构\') AND ID=TBL_BRIDGE_PARTS.PARTS_TYPE_ID)
+        AND SITE_NO BETWEEN #{startSiteNo} AND #{endSiteNo}
+    </string>
+
+    <string name="deletePierPartsRangeOf">
+        DELETE FROM TBL_BRIDGE_PARTS
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE ID=TBL_BRIDGE_PARTS.PARTS_TYPE_ID AND NAME=\'桥墩\')
+        AND SITE_NO BETWEEN #{startSiteNo} AND #{endSiteNo}
+    </string>
+
+    <string name="deletePierBasePartsRangeOf">
+        DELETE FROM TBL_BRIDGE_PARTS
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_MEMBER_TYPE WHERE ID=TBL_BRIDGE_PARTS.MEMBER_TYPE_ID AND NAME=\'墩基础\')
+        AND SITE_NO BETWEEN #{startSiteNo} AND #{endSiteNo}
+    </string>
+
+    <string name="deleteAbutmentParts">
+        DELETE FROM TBL_BRIDGE_PARTS
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE ID=TBL_BRIDGE_PARTS.PARTS_TYPE_ID AND NAME=\'桥台\')
+    </string>
+
+    <string name="deleteAbutmentBaseParts">
+        DELETE FROM TBL_BRIDGE_PARTS
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_MEMBER_TYPE WHERE ID=TBL_BRIDGE_PARTS.MEMBER_TYPE_ID AND NAME=\'台基础\')
+    </string>
+
+    <string name="deleteAbutmentAttachParts">
+        DELETE FROM TBL_BRIDGE_PARTS
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE ID=TBL_BRIDGE_PARTS.PARTS_TYPE_ID AND NAME IN (\'翼墙、耳墙\',\'锥坡、护坡\'))
+    </string>
+
+    <string name="deletePartsRangeOf">
+        DELETE FROM TBL_BRIDGE_PARTS
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND PARTS_TYPE_ID=#{partsTypeId}
+        AND SITE_NO BETWEEN #{startSiteNo} AND #{endSiteNo}
+    </string>
+
+    <string name="deleteDeckPartsRangeOf">
+        DELETE FROM TBL_BRIDGE_PARTS
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE ID=TBL_BRIDGE_PARTS.PARTS_TYPE_ID AND NAME IN (\'桥面铺装\',\'人行道\',\'栏杆、护栏\',\'排水系统\',\'照明、标志\'))
+        AND SITE_NO=#{siteNo}
+    </string>
+    
+    <string name="deleteExpansionJointPartsRangeOf">
+        DELETE FROM TBL_BRIDGE_PARTS
+        WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+        AND EXISTS (SELECT 1 FROM TBL_PARAM_PARTS_TYPE WHERE ID=TBL_BRIDGE_PARTS.PARTS_TYPE_ID AND NAME=\'伸缩缝装置\')
+        AND SITE_NO=#{siteNo}
+    </string>
+
+    <string name="deleteBridgePartsById">
+        DELETE FROM TBL_BRIDGE_PARTS WHERE ID=#{id}
+    </string>
+
+    <string name="getBridgePartsListBySide">
+        SELECT * FROM TBL_BRIDGE_PARTS WHERE BRIDGE_ID=#{bridgeId} AND SIDE_TYPE_ID=#{sideTypeId}
+    </string>
+
+    <string name="getBridgePartsListBySuperstructure">
+        SELECT
+            MT.ID AS MEMBER_TYPE_ID,
+            MT.NAME AS MEMBER_TYPE_NAME,
+            PT.ID AS PARTS_TYPE_ID,
+            PT.NAME AS PARTS_TYPE_NAME,
+            MD.ID AS MEMBER_DESC_ID,
+            MD.MEMBER_DESC
+        FROM TBL_R_SUPERSTRUCTURE_MEMBER SM
+        INNER JOIN TBL_PARAM_MEMBER_TYPE MT ON MT.ID=SM.MEMBER_TYPE_ID
+        INNER JOIN TBL_PARAM_PARTS_TYPE PT ON PT.ID=MT.PARTS_TYPE_ID
+        INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MD.ID=MT.MEMBER_DESC_ID
+        WHERE SM.SUPERSTRUCTURE_TYPE_ID=#{superstructureTypeId}
+        ORDER BY PT.SORT_NO, MT.SORT_NO ASC
+    </string>
+
+    <string name="getBridgePartsListByPier">
+        SELECT
+            MT.ID AS MEMBER_TYPE_ID,
+            MT.NAME AS MEMBER_TYPE_NAME,
+            PT.ID AS PARTS_TYPE_ID,
+            PT.NAME AS PARTS_TYPE_NAME,
+            MD.ID AS MEMBER_DESC_ID,
+            MD.MEMBER_DESC
+        FROM TBL_PARAM_MEMBER_TYPE MT
+        INNER JOIN TBL_PARAM_PARTS_TYPE PT ON MT.PARTS_TYPE_ID=PT.ID
+        INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MT.MEMBER_DESC_ID=MD.ID
+        WHERE PT.NAME IN (\'桥墩\', \'墩台基础\')
+        ORDER BY PT.SORT_NO, MT.SORT_NO ASC
+    </string>
+
+    <string name="getBridgePartsListByAbutment">
+        SELECT
+            MT.ID AS MEMBER_TYPE_ID,
+            MT.NAME AS MEMBER_TYPE_NAME,
+            PT.ID AS PARTS_TYPE_ID,
+            PT.NAME AS PARTS_TYPE_NAME,
+            MD.ID AS MEMBER_DESC_ID,
+            MD.MEMBER_DESC
+        FROM TBL_R_ABUTMENT_MEMBER AM
+        INNER JOIN TBL_PARAM_MEMBER_TYPE MT ON MT.ID=AM.MEMBER_TYPE_ID
+        INNER JOIN TBL_PARAM_PARTS_TYPE PT ON PT.ID=MT.PARTS_TYPE_ID
+        INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MD.ID=MT.MEMBER_DESC_ID
+        WHERE AM.ABUTMENT_TYPE_ID=#{abutmentTypeId}
+        ORDER BY PT.SORT_NO, MT.SORT_NO ASC
+    </string>
+
+    <string name="getBridgePartsListByAbutmentAttach">
+        SELECT
+            MT.ID AS MEMBER_TYPE_ID,
+            MT.NAME AS MEMBER_TYPE_NAME,
+            PT.ID AS PARTS_TYPE_ID,
+            PT.NAME AS PARTS_TYPE_NAME,
+            MD.ID AS MEMBER_DESC_ID,
+            MD.MEMBER_DESC
+        FROM TBL_PARAM_MEMBER_TYPE MT
+        INNER JOIN TBL_PARAM_PARTS_TYPE PT ON MT.PARTS_TYPE_ID=PT.ID
+        INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MT.MEMBER_DESC_ID=MD.ID
+        WHERE PT.NAME IN (\'墩台基础\', \'翼墙、耳墙\', \'锥坡、护坡\')
+        ORDER BY PT.SORT_NO, MT.SORT_NO ASC
+    </string>
+
+    <string name="getBridgePartsListByRiverbed">
+         SELECT
+            MT.ID AS MEMBER_TYPE_ID,
+            MT.NAME AS MEMBER_TYPE_NAME,
+            PT.ID AS PARTS_TYPE_ID,
+            PT.NAME AS PARTS_TYPE_NAME,
+            MD.ID AS MEMBER_DESC_ID,
+            MD.MEMBER_DESC
+        FROM TBL_PARAM_MEMBER_TYPE MT
+        INNER JOIN TBL_PARAM_PARTS_TYPE PT ON PT.ID=MT.PARTS_TYPE_ID
+        INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MD.ID=MT.MEMBER_DESC_ID
+        WHERE PT.NAME=\'河床\'
+        ORDER BY PT.SORT_NO, MT.SORT_NO ASC
+    </string>
+
+    <string name="getBridgePartsListByRegulatingStructure">
+         SELECT
+            MT.ID AS MEMBER_TYPE_ID,
+            MT.NAME AS MEMBER_TYPE_NAME,
+            PT.ID AS PARTS_TYPE_ID,
+            PT.NAME AS PARTS_TYPE_NAME,
+            MD.ID AS MEMBER_DESC_ID,
+            MD.MEMBER_DESC
+        FROM TBL_PARAM_MEMBER_TYPE MT
+        INNER JOIN TBL_PARAM_PARTS_TYPE PT ON PT.ID=MT.PARTS_TYPE_ID
+        INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MD.ID=MT.MEMBER_DESC_ID
+        WHERE PT.NAME=\'调治构造物\'
+        ORDER BY PT.SORT_NO, MT.SORT_NO ASC
+    </string>
+    
+    <string name="getBridgePartsListByDeck">
+        SELECT
+            MT.ID AS MEMBER_TYPE_ID,
+            MT.NAME AS MEMBER_TYPE_NAME,
+            PT.ID AS PARTS_TYPE_ID,
+            PT.NAME AS PARTS_TYPE_NAME,
+            MD.ID AS MEMBER_DESC_ID,
+            MD.MEMBER_DESC
+        FROM TBL_PARAM_MEMBER_TYPE MT
+        INNER JOIN TBL_PARAM_PARTS_TYPE PT ON PT.ID=MT.PARTS_TYPE_ID
+        INNER JOIN TBL_PARAM_POSITION_TYPE POT ON POT.ID=PT.POSITION_TYPE_ID
+        INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MD.ID=MT.MEMBER_DESC_ID
+        WHERE POT.NAME=\'桥面系\'
+        ORDER BY PT.SORT_NO, MT.SORT_NO ASC
+    </string>
+
+    <string name="getBridgePartsListByExpansionJoint">
+        SELECT
+            MT.ID AS MEMBER_TYPE_ID,
+            MT.NAME AS MEMBER_TYPE_NAME,
+            PT.ID AS PARTS_TYPE_ID,
+            PT.NAME AS PARTS_TYPE_NAME,
+            MD.ID AS MEMBER_DESC_ID,
+            MD.MEMBER_DESC
+        FROM TBL_PARAM_MEMBER_TYPE MT
+        INNER JOIN TBL_PARAM_PARTS_TYPE PT ON PT.ID=MT.PARTS_TYPE_ID
+        INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MD.ID=MT.MEMBER_DESC_ID
+        WHERE PT.NAME=\'伸缩缝装置\'
+        ORDER BY PT.SORT_NO, MT.SORT_NO ASC
+    </string>
+
+    <string name="getBridgePartsListBySiteNo">
+           SELECT BP.*,
+            ST.NAME AS STRUCTURE_TYPE_NAME,
+            MT.NAME AS MATERIAL_TYPE_NAME,
+            POS.ID AS POSITION_TYPE_ID,
+            POS.NAME AS POSITION_TYPE_NAME,
+            PT.NAME AS PARTS_TYPE_NAME,
+            MEM.NAME AS MEMBER_TYPE_NAME,
+            MD.ID AS MEMBER_DESC_ID,
+            MD.MEMBER_DESC
+        FROM TBL_BRIDGE_PARTS BP
+            LEFT JOIN TBL_PARAM_STRUCTURE_TYPE ST ON ST.ID=BP.STRUCTURE_TYPE_ID
+            LEFT JOIN TBL_PARAM_TYPE MT ON MT.ID=BP.MATERIAL_TYPE_ID
+            INNER JOIN TBL_PARAM_PARTS_TYPE PT ON PT.ID=BP.PARTS_TYPE_ID
+            INNER JOIN TBL_PARAM_POSITION_TYPE POS ON POS.ID=PT.POSITION_TYPE_ID
+            INNER JOIN TBL_PARAM_MEMBER_TYPE MEM ON MEM.ID=BP.MEMBER_TYPE_ID
+            INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MD.ID=MEM.MEMBER_DESC_ID
+        WHERE BP.BRIDGE_ID=#{bridgeId} AND BP.SIDE_TYPE_ID=#{sideTypeId} AND SITE_NO=#{siteNo}
+        ORDER BY POS.SORT_NO, PT.SORT_NO, MEM.SORT_NO ASC
+    </string>
+
+    <string name="getBridgePartsListBySiteNoAndPosition">
+        SELECT BP.*,
+        ST.NAME AS STRUCTURE_TYPE_NAME,
+        MT.NAME AS MATERIAL_TYPE_NAME,
+        POS.ID AS POSITION_TYPE_ID,
+        POS.NAME AS POSITION_TYPE_NAME,
+        PT.NAME AS PARTS_TYPE_NAME,
+        MEM.NAME AS MEMBER_TYPE_NAME,
+        MD.ID AS MEMBER_DESC_ID,
+        MD.MEMBER_DESC
+        FROM TBL_BRIDGE_PARTS BP
+        LEFT JOIN TBL_PARAM_STRUCTURE_TYPE ST ON ST.ID=BP.STRUCTURE_TYPE_ID
+        LEFT JOIN TBL_PARAM_TYPE MT ON MT.ID=BP.MATERIAL_TYPE_ID
+        INNER JOIN TBL_PARAM_PARTS_TYPE PT ON PT.ID=BP.PARTS_TYPE_ID
+        INNER JOIN TBL_PARAM_POSITION_TYPE POS ON POS.ID=PT.POSITION_TYPE_ID
+        INNER JOIN TBL_PARAM_MEMBER_TYPE MEM ON MEM.ID=BP.MEMBER_TYPE_ID
+        INNER JOIN TBL_PARAM_MEMBER_DESC MD ON MD.ID=MEM.MEMBER_DESC_ID
+        WHERE BP.BRIDGE_ID=#{bridgeId} AND BP.SIDE_TYPE_ID=#{sideTypeId} AND BP.SITE_NO=#{siteNo} AND POS.NAME=#{positionTypeName}
+        ORDER BY POS.SORT_NO, PT.SORT_NO, MEM.SORT_NO ASC
+    </string>
+    
+    <string name="getBridgePartsListForUpload">
+        SELECT BP.*,
+        PT.NAME AS PARTS_TYPE_NAME
+        FROM TBL_BRIDGE_PARTS BP
+        INNER JOIN TBL_PARAM_PARTS_TYPE PT ON PT.ID=BP.PARTS_TYPE_ID
+        WHERE BRIDGE_ID=#{bridgeId} AND UPLOAD=1
+    </string>
+
+    <string name="updateBridgeParts">
+        UPDATE TBL_BRIDGE_PARTS
+        SET STRUCTURE_TYPE_ID=#{structureTypeId}, MATERIAL_TYPE_ID=#{materialTypeId},
+            HORIZONTAL_COUNT=#{horizontalCount}, VERTICAL_COUNT=#{verticalCount}, STAKE_SIDE=#{stakeSide}, SPECIAL_SECTION=#{specialSection}, UPLOAD=1
+        WHERE ID=#{id}
+    </string>
+</resources>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.jsrbc">
+
+    <!-- 手机震动权限 -->
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
+    <uses-permission android:name="android.permission.ACCES_MOCK_LOCATION" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- 来电消音 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:name=".Application"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!--提供文件访问-->
+        <provider
+            android:authorities="net.jsrbc.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+
+        <!-- 注册百度地图key及服务 -->
+        <meta-data
+            android:name="BaiduMobAd_STAT_ID"
+            android:value="48ae76de3f" />
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="az6ZpP9bV1dI5uDCItiQKgRwzG3sQCId" />
+
+        <!-- 声明百度的定位服务，不声明则不能连续定位 -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <!-- 起始页 -->
+        <activity
+            android:name=".activity.system.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 登录界面 -->
+        <activity
+            android:name=".activity.system.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:launchMode="singleTask" />
+
+        <!-- 软件主页面 -->
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 我的任务 -->
+        <activity
+            android:name=".activity.task.MyTaskActivity"
+            android:label="@string/title_activity_my_task"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 下载任务单界面 -->
+        <activity
+            android:name=".activity.task.TaskDownloadActivity"
+            android:label="@string/title_activity_task_download"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁列表界面 -->
+        <activity
+            android:name=".activity.bridge.BridgeListActivity"
+            android:label="@string/title_activity_bridge_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁信息界面 -->
+        <activity
+            android:name=".activity.bridge.BridgeActivity"
+            android:label="@string/title_activity_bridge"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁分幅界面 -->
+        <activity
+            android:name=".activity.side.BridgeSideActivity"
+            android:label="@string/title_activity_bridge_side"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁分幅表单界面 -->
+        <activity
+            android:name=".activity.side.BridgeSideFormActivity"
+            android:label="@string/title_activity_bridge_side_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁孔跨管理界面 -->
+        <activity
+            android:name=".activity.member.BridgeSiteActivity"
+            android:label="@string/title_activity_bridge_site"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 跨径组合表单界面 -->
+        <activity
+            android:name=".activity.member.SpanCombinationFormActivity"
+            android:label="@string/title_activity_span_combination_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 上部结构类型表单 -->
+        <activity
+            android:name=".activity.member.SuperstructureFormActivity"
+            android:label="@string/title_activity_superstructure_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 上部结构构件数量表单 -->
+        <activity
+            android:name=".activity.member.SuperMemberFormActivity"
+            android:label="@string/title_activity_super_member_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥墩类型表单 -->
+        <activity
+            android:name=".activity.member.PierFormActivity"
+            android:label="@string/title_activity_pier_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥墩构件数量表单 -->
+        <activity
+            android:name=".activity.member.PierMemberFormActivity"
+            android:label="@string/title_activity_pier_member_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥台类型表单 -->
+        <activity
+            android:name=".activity.member.AbutmentFormActivity"
+            android:label="@string/title_activity_abutment_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥台构件数量表单 -->
+        <activity
+            android:name=".activity.member.AbutmentMemberFormActivity"
+            android:label="@string/title_activity_abutment_member_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 添加孔跨范围 -->
+        <activity
+            android:name=".activity.member.SiteRangeFormActivity"
+            android:label="@string/title_activity_site_range_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥面系表单 -->
+        <activity
+            android:name=".activity.member.DeckFormActivity"
+            android:label="@string/title_activity_deck_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 伸缩缝表单 -->
+        <activity
+            android:name=".activity.member.ExpansionJointFormActivity"
+            android:label="@string/title_activity_expansion_joint_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁部件列表 -->
+        <activity
+            android:name=".activity.member.BridgePartsActivity"
+            android:label="@string/title_activity_bridge_parts"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁部件编辑表单 -->
+        <activity
+            android:name=".activity.member.BridgePartsFormActivity"
+            android:label="@string/title_activity_bridge_parts_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 相机界面 -->
+        <activity
+            android:name=".activity.system.CameraActivity"
+            android:label="@string/title_activity_bridge_parts_form"
+            android:theme="@style/FullscreenTheme" />
+
+        <!-- 桥梁照片预览界面 -->
+        <activity
+            android:name=".activity.bridge.BridgePreviewActivity"
+            android:label="@string/title_activity_bridge_preview"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁整体情况 -->
+        <activity
+            android:name=".activity.disease.OverallSituationActivity"
+            android:label="@string/title_activity_overall_situation"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 整体状况记录表单 -->
+        <activity
+            android:name=".activity.disease.OverallSituationFormActivity"
+            android:label="@string/title_activity_overall_situation_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 病害照片预览 -->
+        <activity
+            android:name=".activity.disease.DiseasePhotoPreviewActivity"
+            android:label="@string/title_activity_disease_preview"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 病害照片墙 -->
+        <activity
+            android:name=".activity.disease.DiseasePhotoWallActivity"
+            android:label="@string/title_activity_disease_photo_wall"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁病害列表 -->
+        <activity
+            android:name=".activity.disease.BridgeDiseaseActivity"
+            android:label="@string/title_activity_bridge_disease"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁病害表单 -->
+        <activity
+            android:name=".activity.disease.BridgeDiseaseFormActivity"
+            android:label="@string/title_activity_bridge_disease_form"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 数据上传 -->
+        <activity
+            android:name=".activity.bridge.BridgeUploadActivity"
+            android:label="@string/title_activity_bridge_upload"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- 桥梁定位界面 -->
+        <activity
+            android:name=".activity.bridge.BridgeMapActivity"
+            android:label="@string/title_activity_bridge_map"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!--系统设置-->
+        <activity
+            android:name=".activity.system.SettingActivity"
+            android:label="@string/title_activity_setting"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <!--桥梁导航界面-->
+        <activity
+            android:name=".activity.bridge.BridgeNavActivity"
+            android:label="桥梁导航"
+            android:theme="@style/FullscreenTheme" />
+
+        <!-- 应用相关后台服务 -->
+        <service android:name=".service.DownloadService" />
+        <service android:name=".service.UploadService" />
+        <service android:name=".service.UpdateService"/>
+
+    </application>
+
+</manifest>

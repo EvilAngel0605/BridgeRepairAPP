@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="net.jsrbc.activity.member.AbutmentMemberFormActivity"
+    tools:showIn="@layout/activity_abutment_member_form">
+
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_sm"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_material_type"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/FormInputLabel"
+                android:text="材料类型"
+                tools:ignore="HardcodedText" />
+
+            <Spinner
+                android:id="@+id/sp_material_type"
+                style="@style/FormSpinner"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_horizontal_count"
+            android:layout_marginTop="@dimen/margin_sm"
+            style="@style/FormInputWrapper"
+            android:visibility="gone">
+            <TextView
+                style="@style/FormInputLabel"
+                android:text="数量"
+                tools:ignore="HardcodedText" />
+            <EditText
+                android:id="@+id/et_horizontal_count"
+                style="@style/FormInput"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:hint="输入数量"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_position"
+            android:layout_marginTop="@dimen/margin_sm"
+            style="@style/FormInputWrapper"
+            android:visibility="gone">
+            <TextView
+                style="@style/FormInputLabel"
+                android:text="分布位置"
+                tools:ignore="HardcodedText" />
+
+            <CheckBox
+                android:id="@+id/cb_position_left"
+                android:textSize="@dimen/text_md"
+                android:textColor="@color/gray_dark"
+                android:text="左侧"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText"/>
+
+            <CheckBox
+                android:id="@+id/cb_position_right"
+                android:layout_marginStart="@dimen/margin_sm"
+                android:textSize="@dimen/text_md"
+                android:textColor="@color/gray_dark"
+                android:text="右侧"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exists"
+            android:layout_marginTop="@dimen/margin_sm"
+            style="@style/FormInputWrapper"
+            android:visibility="gone">
+            <TextView
+                style="@style/FormInputLabel"
+                android:text="是否存在"
+                tools:ignore="HardcodedText" />
+
+            <CheckBox
+                android:id="@+id/cb_exists"
+                android:textSize="@dimen/text_md"
+                android:textColor="@color/gray_dark"
+                android:text="存在"
+                android:layout_weight="4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:ignore="HardcodedText"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
