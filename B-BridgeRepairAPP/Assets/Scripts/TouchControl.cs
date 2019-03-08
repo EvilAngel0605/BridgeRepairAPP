@@ -4,7 +4,7 @@ using System.Collections;
 public class TouchControl : MonoBehaviour
 {
     //用于绑定参照物对象
-    public Transform target;
+    Transform target;
     //缩放系数
     float distance = 10.0f;
     //左右滑动移动速度
