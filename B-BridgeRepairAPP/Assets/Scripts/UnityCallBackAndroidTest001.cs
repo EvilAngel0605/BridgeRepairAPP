@@ -32,7 +32,7 @@ public class UnityCallBackAndroidTest001 : MonoBehaviour
         print("OnClick01被执行到了");
         /* com.android.unityToandroid : Android工程定义的包名
         * UnityPlayerActivity :java方法所在的类名 */
-        AndroidJavaClass androidJavaClass = new AndroidJavaClass("com.android.unityToandroid.UnityPlayerActivity");
+        AndroidJavaClass androidJavaClass = new AndroidJavaClass("com.Umayle.Bridge.UnityPlayerActivity");
         //m_instance : UnityPlayerActivity类中自己声明 
         AndroidJavaObject androidJavaObject = androidJavaClass.GetStatic<AndroidJavaObject>("m_instance");
         //ShowMessage : java对应的方法 

@@ -6,26 +6,62 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class UnityPlayerActivity extends Activity
 {
     protected UnityPlayer mUnityPlayer; // don't change the name of this variable; referenced from native code
-
+    private int index;
+    private String string;
+    public static UnityPlayerActivity m_instance=null;
     // Setup activity layout
     @Override protected void onCreate(Bundle savedInstanceState)
     {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-
+        getWindow().setFormat(PixelFormat.RGBX_8888);
         mUnityPlayer = new UnityPlayer(this);
         setContentView(mUnityPlayer);
         mUnityPlayer.requestFocus();
+        m_instance=this;
     }
+
+    //Unity调用的ShowMessage方法并传递参数
+    public void ShowMessage(final String string)
+    {
+        Log.i("调用信息","我被OnClick02调用了");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Show(string);
+            }
+        });
+    }
+    public void Show(String string)
+    {
+        Toast.makeText(this,string+"成功调用了android方法",Toast.LENGTH_LONG).show();
+    }
+    //Unity调用的Make Pause Unity方法，并返回index
+    public int makePauseUnity()
+    {
+        Log.i("调用信息","我被OnClick01调用了");
+        index++;
+        return index;
+    }
+
+    public String makeRotateUnity()
+    {
+        Log.i("调用信息","我被OnClick01调用了");
+        string="80";
+        return string;
+    }
+
 
     @Override protected void onNewIntent(Intent intent)
     {
