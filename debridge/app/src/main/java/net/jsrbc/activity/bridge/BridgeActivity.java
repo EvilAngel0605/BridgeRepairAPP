@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.jsrbc.R;
-import net.jsrbc.activity.disease.BridgeDiseaseActivity;
+import net.jsrbc.UserData.ScanActivity;
 import net.jsrbc.activity.disease.OverallSituationActivity;
 import net.jsrbc.activity.side.BridgeSideActivity;
 import net.jsrbc.activity.system.CameraActivity;
@@ -23,7 +23,6 @@ import net.jsrbc.frame.annotation.element.AndroidActivity;
 import net.jsrbc.frame.annotation.element.AndroidMenu;
 import net.jsrbc.frame.annotation.element.AndroidView;
 import net.jsrbc.frame.annotation.event.OnClick;
-import net.jsrbc.frame.annotation.event.OnItemSelected;
 import net.jsrbc.frame.base.BaseActivity;
 import net.jsrbc.mapper.BridgeMapper;
 import net.jsrbc.mapper.BridgeSideMapper;
@@ -205,11 +204,16 @@ public class BridgeActivity extends BaseActivity implements View.OnClickListener
                 if (ListUtils.isEmpty(currentSideList)) {
                     SystemUtils.prompt(this, "该桥尚未添加分幅，请在分幅管理中添加");
                 }else {
-                    SystemUtils.choose(this, currentSideList.stream().map(TblBridgeSide::getSideTypeName).collect(Collectors.toList()), (d, i) -> {
+                    /*SystemUtils.choose(this, currentSideList.stream().map(TblBridgeSide::getSideTypeName).collect(Collectors.toList()), (d, i) -> {
                         Intent intent = new Intent(BridgeActivity.this, BridgeDiseaseActivity.class);
                         intent.putExtra(CURRENT_SIDE, currentSideList.get(i));
                         startActivity(intent);
                     });
+                    */
+                    Intent intent = new Intent(BridgeActivity.this, ScanActivity.class);
+                    startActivity(intent);
+                    //BridgeActivity.this.finish();
+
                 }
                 break;
             }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.jsrbc">
-
+    android:process=":unityplayer"
     <!-- 手机震动权限 -->
     <uses-permission android:name="android.permission.BODY_SENSORS" />
     <uses-permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
@@ -273,7 +273,14 @@
             android:name=".activity.bridge.BridgeNavActivity"
             android:label="桥梁导航"
             android:theme="@style/FullscreenTheme" />
-
+        <!--桥梁导航界面-->
+        <activity
+            android:name=".UserData.ScanActivity"
+            android:label="unity 程序"
+            android:launchMode="singleTask"
+            android:process="e.unity3d"
+            android:screenOrientation="fullSensor"
+            ></activity>
         <!-- 应用相关后台服务 -->
         <service android:name=".service.DownloadService" />
         <service android:name=".service.UploadService" />
