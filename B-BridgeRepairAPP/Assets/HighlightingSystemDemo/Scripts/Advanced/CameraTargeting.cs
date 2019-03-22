@@ -39,6 +39,7 @@ public class CameraTargeting : MonoBehaviour
 	// 
 	void Update()
 	{
+        return;
 		TargetingRaycast();
 	}
 
